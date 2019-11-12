@@ -40,7 +40,7 @@ class Main extends Component {
                 <li className="list-group-item">
                   <p>{post.content}</p>
                 </li>
-                <li key={key} className="list-group-item py-0">
+                <li key={key} className="list-group-item py-2">
                   <small className="float-left mt-1 text-muted">
                     TIPS: {window.web3.utils.fromWei(post.tipAmount.toString())} ETH
                   </small>
