@@ -23,41 +23,37 @@ class Main extends Component {
           <button type="submit" className="btn btn-primary btn-block">Share</button>
         </form>
         <p>&nbsp;</p>
-        <h2>Latest Posts</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Status</th>
-              <th scope="col">Author</th>
-              <th scope="col">Tips</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody id="postList">
-            { this.props.posts.map((post, key) => {
-              return(
-                <tr key={key}>
-                  <th scope="row">{post.id.toString()}</th>
-                  <td>{post.content}</td>
-                  <td>{post.author}</td>
-                  <td>{window.web3.utils.fromWei(post.tipAmount.toString())}</td>
-                  <td>
-                    <button
-                      name={post.id}
-                      onClick={(event) => {
-                        let tipAmount = window.web3.utils.toWei('0.1', 'Ether')
-                        this.props.tipPost(event.target.name, tipAmount)
-                      }}
-                    >
-                      Tip 0.1 ETH
-                    </button>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        { this.props.posts.map((post, key) => {
+          return(
+            <div class="card mb-4" >
+              <div class="card-header">
+                <small className="text-muted">{post.author}</small>
+              </div>
+              <ul id="postList" class="list-group list-group-flush">
+                <li key={key} class="list-group-item">
+                  <p>{post.content}</p>
+                </li>
+                <li key={key} class="list-group-item py-0">
+                  <small className="float-left mt-1 text-muted">
+                    TIPS: {window.web3.utils.fromWei(post.tipAmount.toString())} ETH
+                  </small>
+                  <button
+                    className="btn btn-link btn-sm float-right pt-0"
+                    name={post.id}
+                    onClick={(event) => {
+                      let tipAmount = window.web3.utils.toWei('0.1', 'Ether')
+                      this.props.tipPost(event.target.name, tipAmount)
+                    }}
+                  >
+                    <span>
+                      TIP 0.1 ETH
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )
+        })}
       </div>
     );
   }
