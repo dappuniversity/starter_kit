@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Identicon from 'identicon.js';
 
 class Main extends Component {
 
@@ -27,10 +28,13 @@ class Main extends Component {
           return(
             <div className="card mb-4" key={key} >
               <div className="card-header">
-                <small className="text-muted">
-                  {/* Extra small, haha :) */}
-                  <small>{post.author}</small>
-                </small>
+                <img
+                  className="mr-2"
+                  width='30'
+                  height='30'
+                  src={`data:image/png;base64,${new Identicon(post.author, 30).toString()}`}
+                />
+                <small className="text-muted">{post.author}</small>
               </div>
               <ul id="postList" className="list-group list-group-flush">
                 <li className="list-group-item">

@@ -9514,6 +9514,11 @@
         "postcss": "6.0.23"
       }
     },
+    "identicon.js": {
+      "version": "2.3.3",
+      "resolved": "https://registry.npmjs.org/identicon.js/-/identicon.js-2.3.3.tgz",
+      "integrity": "sha512-/qgOkXKZ7YbeCYbawJ9uQQ3XJ3uBg9VDpvHjabCAPp6aRMhjLaFAxG90+1TxzrhKaj6AYpVGrx6UXQfQA41UEA=="
+    },
     "identity-obj-proxy": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz",
