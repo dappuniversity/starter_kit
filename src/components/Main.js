@@ -27,7 +27,10 @@ class Main extends Component {
           return(
             <div class="card mb-4" >
               <div class="card-header">
-                <small className="text-muted">{post.author}</small>
+                <small className="text-muted">
+                  {/* Extra small, haha :) */}
+                  <small>{post.author}</small>
+                </small>
               </div>
               <ul id="postList" class="list-group list-group-flush">
                 <li key={key} class="list-group-item">
