@@ -25,18 +25,18 @@ class Main extends Component {
         <p>&nbsp;</p>
         { this.props.posts.map((post, key) => {
           return(
-            <div class="card mb-4" >
-              <div class="card-header">
+            <div className="card mb-4" key={key} >
+              <div className="card-header">
                 <small className="text-muted">
                   {/* Extra small, haha :) */}
                   <small>{post.author}</small>
                 </small>
               </div>
-              <ul id="postList" class="list-group list-group-flush">
-                <li key={key} class="list-group-item">
+              <ul id="postList" className="list-group list-group-flush">
+                <li className="list-group-item">
                   <p>{post.content}</p>
                 </li>
-                <li key={key} class="list-group-item py-0">
+                <li key={key} className="list-group-item py-0">
                   <small className="float-left mt-1 text-muted">
                     TIPS: {window.web3.utils.fromWei(post.tipAmount.toString())} ETH
                   </small>
