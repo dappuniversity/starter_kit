@@ -1,7 +1,7 @@
 {
-  "name": "eth-marketplace",
+  "name": "dappuniversity-starter-kit",
   "version": "0.1.0",
-  "description": "An Ethereum Marketplace",
+  "description": "Dapp University Starter Kit",
   "author": "gregory@dappuniversity.com",
   "dependencies": {
     "babel-polyfill": "6.26.0",
