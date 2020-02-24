@@ -4,12 +4,18 @@ import './App.css';
 import SocialNetwork from '../abis/SocialNetwork.json'
 import Navbar from './Navbar'
 import Main from './Main'
+import MetamaskAlert from './MetamaskAlert'
 
 class App extends Component {
 
   async componentWillMount() {
-    await this.loadWeb3()
-    await this.loadBlockchainData()
+    // Detect Metamask
+    const metamaskInstalled = typeof window.web3 !== 'undefined'
+    this.setState({ metamaskInstalled })
+    if(metamaskInstalled) {
+      await this.loadWeb3()
+      await this.loadBlockchainData()
+    }
   }
 
   async loadWeb3() {
@@ -21,7 +27,7 @@ class App extends Component {
       window.web3 = new Web3(window.web3.currentProvider)
     }
     else {
-      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+      // DO NOTHING...
     }
   }
 
@@ -85,19 +91,20 @@ class App extends Component {
   }
 
   render() {
+    let content
+    if(this.state.loading) {
+      content = <div id="loader" className="text-center"><p className="text-center">Loading...</p></div>
+    } else {
+      content = <Main posts={this.state.posts} createPost={this.createPost} tipPost={this.tipPost} />
+    }
+
     return (
       <div>
         <Navbar account={this.state.account} />
         <div className="container-fluid mt-5">
           <div className="row">
             <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
-              { this.state.loading
-                ? <div id="loader" className="text-center"><p className="text-center">Loading...</p></div>
-                : <Main
-                  posts={this.state.posts}
-                  createPost={this.createPost}
-                  tipPost={this.tipPost} />
-              }
+              { this.state.metamaskInstalled ? content : <MetamaskAlert />}
             </main>
           </div>
         </div>
