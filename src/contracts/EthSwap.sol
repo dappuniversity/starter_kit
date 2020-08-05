@@ -32,4 +32,17 @@ contract EhtSwap {
 
     emit TokenPurchase(msg.sender, address(token), tokenAmount, rate);
    }
+
+  function sellTokens(uint _amount) public {
+    // User can't sell more tokens than they have
+    require(token.balanceOf(msg.sender) >= _amount);
+
+    // Calculate the amount of Ether to redeem
+    uint etherAmount = _amount / rate;
+
+    // Require that EthSwap has enough Ether
+    require(address(this).balance >= etherAmount);
+
+   }
+
 }

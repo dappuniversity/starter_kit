@@ -67,5 +67,35 @@ contract('EhtSwap', ([deployer, investor])=> {
     })
   })
 
-})
+describe('EhtSwap deployment', async() => {
+    it('contract has a name', async () => {
+      const name = await ehtSwap.name()
+      assert.equal(name, 'EhtSwap Instant Exchange')
+    })
+
+  it('contract has tokens', async () => {
+    let balance = await token.balanceOf(ehtSwap.address)
+    assert.equal(balance.toString(), tokens('1000000'))
+  })
+
+  })
+
+  describe('sellTokens()', async () => {
+    let result
+
+    before(async () => {
+      // Investor must approve tokens before the purchase
+      await token.approve(ehtSwap.address, tokens('100'), { from: investor })
+      // Investor sells tokens
+      result = await ehtSwap.sellTokens(tokens('100'), { from: investor })
+    })
+
+    // it('Allows user to instantly sell tokens to ethSwap for a fixed price', async () => {
+    //   let investorBalance = await token.balanceOf(investor)
+    //   assert.equal(investorBalance.toString(), tokens('0'))
+
+    })
+  })
+
+// })
 
