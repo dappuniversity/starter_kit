@@ -1,12 +1,19 @@
 import React from "react";
+import "./App.css"
+import {GlobalProvider,GlobalContext} from "../context/GlobalState";
 
+import {RegisterProperty} from './RegisterProperty'
+ import Navbar from './Navbar';
 function App(){
 
-  return(
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  )
+  return (
+<GlobalProvider>
+  <Navbar />
+<RegisterProperty/>  
+</GlobalProvider>
+
+    )
 }
+
 
 export default App;
