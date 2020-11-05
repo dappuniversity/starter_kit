@@ -1,4 +1,4 @@
-export const registerProperty = (property)=>{
+export const RegisterProperty = (property)=>{
     return {
         type: 'REGISTER_PROPERTY',
         payload: property

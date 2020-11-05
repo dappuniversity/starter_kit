@@ -6,8 +6,9 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract SmartEstate is ERC721 {
     uint256 private buyerId;
-    uint256 private tokenId;
-
+    uint256 public tokenId;
+    
+    PropertyDetails[] public property;
     enum offerApproval {pending, approved, rejected}
 
     struct PropertyDetails {
@@ -36,12 +37,13 @@ contract SmartEstate is ERC721 {
         );
         _;
     }
-
+    mapping (uint256 => PropertyDetails) public lands;
     mapping(address => PropertyDetails) public OnlyOwner;
     mapping(uint256 => address) public PropertyList;
     mapping(address => BuyerInfo) public BuyerList;
     mapping(uint256 => BuyerInfo[]) public AllBuyers;
     mapping(uint256 => bool) public Offers;
+    
 
     constructor() public ERC721("Smart Estate Properties", "ESP") {}
 
@@ -77,6 +79,7 @@ contract SmartEstate is ERC721 {
         PropertyList[thisId] = msg.sender;
         return true;
     }
+
 
     function EnablePropertySale(uint256 PropertyId_TokenId)
         public

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '../context/GlobalState'
-import { web3LoadingError } from '../store/actions';
 
 
 export const EthAccountInfo = () => {

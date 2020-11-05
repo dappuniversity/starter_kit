@@ -3,12 +3,13 @@ import AppReducer from '../store/AppReducer';
 import {loadBlockchain} from '../store/asyncActions'
 
 const initialState ={
-    property: [],
+    properties: [],
     web3:null,
     accounts:[],
     contract:null,
     web3LoadingErrorMessage:"",
     web3Loadded:false
+    
 }
 
 export const GlobalContext = createContext(initialState)
