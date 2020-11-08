@@ -1,12 +1,28 @@
 import React from "react";
+import "./App.css"
+import { GlobalProvider } from "../context/GlobalState";
 
-function App(){
+import { RegisterProperty } from './RegisterProperty'
+import Navbar from './Navbar';
+import EnablePropertySale from "./EnablePropertySale";
+import { EthAccountInfo } from './EthAccountInfo';
 
-  return(
-    <div>
-      <h1>Hello World</h1>
-    </div>
+function App() {
+
+  return (
+    <GlobalProvider>
+      <Navbar />
+      <div>
+        <EthAccountInfo />
+        <RegisterProperty />
+        <EnablePropertySale />
+        
+      </div>
+
+    </GlobalProvider>
+
   )
 }
+
 
 export default App;

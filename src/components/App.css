@@ -1,1 +1,18 @@
 /* Styles go here */
+body {
+    background-color: #00bcd4;
+    margin: 0 auto;
+    
+}
+
+.center{
+    text-align: center;
+    
+}
+
+.form > div{
+    text-align: center;
+    margin-left: 0;
+   
+}
+
