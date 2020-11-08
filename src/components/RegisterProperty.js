@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useStore } from '../context/GlobalState'
 import { registerPropertyAsync } from '../store/asyncActions'
 import Loader from '../images/loader.gif'
+import {EthAccountInfo} from './EthAccountInfo'
+import {EnablePropertySale} from './EnablePropertySale'
 
 export const RegisterProperty = () => {
     const [_propertyAddress, setpropertyAddress] = useState("");
@@ -47,7 +49,9 @@ export const RegisterProperty = () => {
     }
 
     return (
+        
         <>
+         <EthAccountInfo/>
             <h3>Add new Property{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
             <form onSubmit={onSubmit} className="form">
@@ -93,6 +97,7 @@ export const RegisterProperty = () => {
                        <div className="center"> <button className="btn"style={{background:"blue",color:"white"}}> Register Property</button></div>
                 }
             </form>
+            <EnablePropertySale/>
         </>
     )
 

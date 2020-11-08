@@ -3,7 +3,7 @@ import { useStore } from '../context/GlobalState'
 import { enablePropertySale } from '../store/asyncActions'
 import Loader from '../images/loader.gif'
 
-function EnablePropertySale() {
+export function EnablePropertySale() {
 
     const [{ contract, accounts }, dispatch] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)

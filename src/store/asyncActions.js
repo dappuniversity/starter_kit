@@ -17,7 +17,7 @@ export const loadBlockchain = async (dispatch) => {
             //const contract = new web3.eth.contract(SMART_ESTATE_ABI,SMART_ESTATE_ADDRESS)
             //const networkId = web3.eth.net.getId()
             //const networkData = SmartEstate.networks[networkId]
-            const address = "0x76Ca8fe3fF53727181Be18FE2f8c74F262df4b46"
+            const address = "0xc780Da100Ac3c2D2d89E06FFF4638F19B53D9eD5"
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             const accounts = await web3.eth.getAccounts();
