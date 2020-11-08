@@ -48,49 +48,49 @@ export const RegisterProperty = () => {
 
     return (
         <>
-            <h3>Add new Property{isTransactionInProcess && <img widht="40px" src={Loader} alt="Loading...." />}</h3>
+            <h3>Add new Property{isTransactionInProcess && <img width="40px" src={Loader} alt="Loading...." />}</h3>
             {!isTransactionSuccessful && <div style={{ color: "red" }}>{transactionError}</div>}
-            <form onSubmit={onSubmit}>
-
-                <div className="form-control">
+            <form onSubmit={onSubmit} className="form">
+            
+                <div className="form-group ">
                     <label htmlFor="text">Address</label>
                     <input type="text" required value={_propertyAddress} onChange={(e) => setpropertyAddress(e.target.value)} placeholder="Enter Address.." />
                 </div>
-                <div className="form-control">
-                    <label htmlFor="city">city</label>
+                <div className="form-group">
+                    <label htmlFor="city">City </label>
                     <input type="text" required value={_city} onChange={(e) => setcity(e.target.value)} placeholder="Enter city.." />
                 </div>
-                <div className="form-control">
-                    <label htmlFor="room">room</label>
+                <div className="form-group">
+                    <label htmlFor="room">Room(s)</label>
                     <input type="text" required value={_room} onChange={(e) => setroom(e.target.value)} placeholder="Enter room.." />
                 </div>
-                <div className="form-control">
-                    <label htmlFor="area">area</label>
+                <div className="form-group">
+                    <label htmlFor="area">Area</label>
                     <input type="text" required value={_area} onChange={(e) => setarea(e.target.value)} placeholder="Enter area.." />
                 </div>
-                <div className="form-control">
-                    <label htmlFor="amount">amount</label>
+                <div className="form-group">
+                    <label htmlFor="amount">Amount</label>
                     <input type="number" required value={_priceInEther} onChange={(e) => setpriceInEther(e.target.value)} placeholder="Enter Price.." />
                 </div>
-                <div className="form-control">
-                    <label htmlFor="propertyType">propertyType</label>
+                <div className="form-group">
+                    <label htmlFor="propertyType">PropertyType</label>
                     <input type="text" required value={_propertyType} onChange={(e) => setproeprtyType(e.target.value)} placeholder="Enter propertyType.." />
                 </div>
-                <div className="form-control">
+                <div className="form-group">
                     <label htmlFor="SaleStatus">SaleStatus</label>
                     <input type="radio" value="true" name="salestatus" onChange={(e) => setsaleStatus(e.target.value)} /> True
                     <input type="radio" value="False" name="salestatus" onChange={(e) => setsaleStatus(e.target.value)} /> False
                 </div>
 
-                <div className="form-control">
+                <div className="form-group">
                     <label htmlFor="TokenUri">TokenUri</label>
                     <input type="text" value={_tokenUri} onChange={(e) => settokenUri(e.target.value)} placeholder="Enter TokenUri.." />
                 </div>
 
                 {
                     isTransactionInProcess ?
-                        <div className="btn"> Transaction in Process...</div> :
-                        <button className="btn"> Add Transaction</button>
+                        <div className="btn"style={{background:"blue",color:"white"}}> Transaction in Process...</div> :
+                       <div className="center"> <button className="btn"style={{background:"blue",color:"white"}}> Register Property</button></div>
                 }
             </form>
         </>

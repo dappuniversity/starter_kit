@@ -77,6 +77,7 @@ contract SmartEstate is ERC721 {
         });
         OnlyOwner[msg.sender] = tempDetails;
         PropertyList[thisId] = msg.sender;
+        property.push(tempDetails);
         return true;
     }
 

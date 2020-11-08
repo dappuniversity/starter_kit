@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '../context/GlobalState'
-
+import './App.css'
 
 export const EthAccountInfo = () => {
     const [{ web3, accounts, web3LoadingErrorMessage, web3Loaded }] = useStore();
@@ -10,7 +10,7 @@ export const EthAccountInfo = () => {
     useEffect(() => {
         (async () => {
             if (web3 && accounts[0]) {
-                const balance = await web3.utils.getBalance(accounts[0]);
+                const balance = await web3.eth.getBalance(accounts[0]);
                 setAccountBalance(web3.utils.fromWei(balance, "ether"));
             }
         })();
@@ -19,16 +19,16 @@ export const EthAccountInfo = () => {
     function accountDisplay() {
         if (accounts && accounts[0]) {
             return (
-                <div>
-                    <span>Address:</span><span>{accounts[0]}</span>
+                <div className="center">
+                  <b>  <span>Address:</span><span>{accounts[0]}</span></b>
                     <br />
-                    <span>Balance:</span><span>{accountBalance} ethers</span>
+                 <b>   <span>Balance:</span><span>{accountBalance} ethers</span></b>
                 </div>
             );
         }
         else if(!web3 && web3LoadingErrorMessage && !web3Loaded){
             return (
-                <div style={{color:"red"}}> {web3LoadingErrorMessage} </div>
+                <div style={{color:"red"}} > {web3LoadingErrorMessage} </div>
             )
         }
         else {

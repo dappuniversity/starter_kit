@@ -5,6 +5,20 @@ export const RegisterProperty = (property)=>{
     }
 }
 
+export const EnablePropertySale = (tokenId) =>{
+    return {
+        type:'ENABLE_PROPERTY_SALE',
+        payload: tokenId
+    }
+}
+
+// export const PropertyList = (tokenId) =>{
+// return {
+//     type:'PROPERTY_LIST',
+//     payload: tokenId
+// }
+// }
+
 export const setupWeb3 = (web3)=>{
     return {
         type: 'SETUP_WEB3',

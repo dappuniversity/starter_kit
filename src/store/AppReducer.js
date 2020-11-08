@@ -5,6 +5,17 @@ export default (state, action) => {
                 ...state,
                 properties: [action.payload, ...state.properties]
             }
+
+        // case 'PROPERTY_LIST':
+        //     return {
+        //         ...state,
+        //         tokenIds: [action.payload,...state.tokenIds]
+        //     }
+        case 'ENABLE_PROPERTY_SALE':
+            return {
+                ...state,
+                tokenIds: [ action.payload,...state.tokenIds]
+            }
         case 'SETUP_WEB3':
             return {
                 ...state,
@@ -18,14 +29,14 @@ export default (state, action) => {
                 contract: action.payload
             }
         case 'ADD_ETHEREUM_ACCOUNTS':
-            return{
+            return {
                 ...state,
-                accounts:action.payload
+                accounts: action.payload
             }
         case 'WEB3_LOADING_ERROR':
-            return{
+            return {
                 ...state,
-                web3LoadingErrorMessage:action.errorMessage
+                web3LoadingErrorMessage: action.errorMessage
             }
         default:
             return state;

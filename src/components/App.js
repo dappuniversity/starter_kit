@@ -4,12 +4,21 @@ import { GlobalProvider } from "../context/GlobalState";
 
 import { RegisterProperty } from './RegisterProperty'
 import Navbar from './Navbar';
+import EnablePropertySale from "./EnablePropertySale";
+import { EthAccountInfo } from './EthAccountInfo';
+
 function App() {
 
   return (
     <GlobalProvider>
       <Navbar />
-      <RegisterProperty />
+      <div>
+        <EthAccountInfo />
+        <RegisterProperty />
+        <EnablePropertySale />
+        
+      </div>
+
     </GlobalProvider>
 
   )
