@@ -53,6 +53,13 @@ contract Marketplace {
         // Fetch the owner
         address payable _seller = _product.owner;
         // Make sure the product is valid
+        require(_product.id > 0 && _product.id <= productCount);
+        // Require that there is enough Ether in the transaction
+        require(msg.value >= _product.price);
+        // Require that the product has not been purchased already
+        require(!_product.purchased);
+        // Require that the buyer is not the seller
+        require(_seller != msg.sender);
 
         // Transfer ownership to the buyer
         _product.owner = msg.sender;
@@ -65,7 +72,5 @@ contract Marketplace {
         // Trigger an event
         emit ProductPurchased(productCount, _product.name, _product.price, msg.sender, true);
     }
-
-
 
 }
