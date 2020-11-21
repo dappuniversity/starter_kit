@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 
 class Main extends Component {
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const name = this.productName.value
+    const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether') 
+    this.props.createProduct(name, price)
+  }
   
     render() {
       return (
         <div id='content'>
           <h1>Add Product</h1>
-          <form onSubmit={(event) => {
-            event.preventDefault()
-            const name = this.productName.value
-            const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether') 
-            this.props.createProduct(name, price)
-          }}>
+          <form onSubmit={this.handleSubmit}>
             <div className='form-group mr-sm-2'>
               <input
                 id="productName"
@@ -65,7 +67,7 @@ class Main extends Component {
                             >
                               Buy
                             </button> 
-                          : <span role='img' alt='aria-label'>✅ Sold</span>                   
+                          : <span role='img' aria-label='checked' >✅ Sold</span>                   
                         }
                       </td>
                     </tr>
@@ -109,13 +111,16 @@ class Main extends Component {
                               >
                                 Buy
                               </button> 
-                            : <span role='img' alt='aria-label'>✅ Sold</span>                   
+                            : <span role='img' aria-label='checked'>✅ Sold</span>                   
                           }
                         </td>
                       </tr>
                     )
+                  } else {
+                    return(
+                      null
+                    )
                   }
-
                 })}
               </tbody>
           </table>
