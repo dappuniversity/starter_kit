@@ -5419,6 +5419,13 @@
       "links": {},
       "address": "0xB46b8ec6A345EBc3150cF5539d58d3FF6627e4eb",
       "transactionHash": "0x33a0e95a6a6ed2cd88db74c662d91503648fb494c05a03411826eda619998559"
+    },
+
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x7F3Ae22c5CEAe08a60aF592Ae456ad74f40dc7EA",
+      "transactionHash": "0xdb20b78dcba3259dae25f6e1301efebd9c85d70537a17708a0a35a7192be276d"
     }
   },
   "schemaVersion": "3.0.2",

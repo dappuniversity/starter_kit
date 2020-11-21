@@ -19,7 +19,7 @@ class App extends Component {
 
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable()
+      await window.ethereum.eth_requestAccounts
     }
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider)
@@ -34,7 +34,7 @@ class App extends Component {
     // Load account
     const accounts = await web3.eth.getAccounts()
     this.setState({ account: accounts[0] })
-    // console.log(accounts)
+    console.log(accounts)
     const networkId = await web3.eth.net.getId()
     const networkData = Marketplace.networks[networkId]
     if(networkData) {
@@ -51,7 +51,6 @@ class App extends Component {
         })
       }
       this.setState({ loading: false })
-    
 
     } else {
       window.alert('Marketplace contract not deployed to detected network.')
@@ -77,6 +76,7 @@ class App extends Component {
     this.state.marketplace.methods.createProduct(name, price).send({ from: this.state.account })
     .once('receipt', (receipt) => {
       this.setState({ loading: false})
+      // window.ethereum.autoRefreshOnNetworkChange = true;
     })
   }
 
@@ -85,8 +85,11 @@ class App extends Component {
     this.state.marketplace.methods.purchaseProduct(id).send({ from: this.state.account, value: price })
     .once('receipt', (receipt) => {
       this.setState({ loading: false})
+      // window.ethereum.autoRefreshOnNetworkChange = true;
     })
   }
+
+  
 
   render() {
     return (
