@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+import styled from 'styled-components';
+
+const MarketplaceName = styled.h1`
+    font-family: 'Permanent Marker', cursive;
+    color: rgb(70,130,180);
+`;
+
+const EthPrice = styled.div`
+    color: white;
+`;
+
 class NavBar extends Component {
   
     render() {
@@ -13,7 +24,8 @@ class NavBar extends Component {
               rel="noopener noreferrer"
             >
               CRYPTOBASE
-            </a>
+              <MarketplaceName>Marketplace</MarketplaceName></a>
+              <EthPrice><img src={this.props.ethLogo} height='30'alt='Eth Logo' />Eth: ${this.props.ethPrice} </EthPrice>
           <ul className='navbar-nav px-3'>
             <li className='nav-item text-nowrap d-none d-sm-none d-sm-block'>
                 {this.props.account 

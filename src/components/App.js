@@ -1,10 +1,21 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
+import axios from "axios";
 // import logo from '../logo.png';
 // import './App.css';
 import Marketplace from '../abis/Marketplace.json';
 import NavBar from './NavBar';
 import Main from './Main';
+
+import styled from 'styled-components';
+
+const Whole = styled.section`
+  /* justify-content: center;
+  width: 100%;
+  padding: 4em; */
+  background: rgba(70,130,180,1);
+  /* border: 1px red solid; */
+`;
 
 class App extends Component {
 
@@ -12,6 +23,16 @@ class App extends Component {
     await this.loadWeb3()
     await this.loadBlockchainData()
     // console.log(window.web3)
+    axios
+      .get(
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true"
+      )
+      .then(res => {
+          console.log(res.data[1])
+          this.setState({ ethPrice: res.data[1].current_price})
+          this.setState({ ethLogo: res.data[1].image})
+      })
+      .catch(err => console.log(err));
   }
 
   async loadWeb3() {
@@ -60,11 +81,14 @@ class App extends Component {
       account: '',
       productCount: 0,
       products: [],
-      loading: true
+      loading: true, 
+      ethPrice: 0,
+      ethLogo: ''
     }
     this.createProduct = this.createProduct.bind(this)
     this.purchaseProduct = this.purchaseProduct.bind(this)
   }
+  
 
   createProduct(name, price) {
     this.setState({ loading: true })
@@ -87,20 +111,26 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar account={this.state.account} />
-        <div className='container-fluid mt-5'>
-          <div className='row'>
-            <main role='main' className='col-lg-12 d-flex'>
-              {this.state.loading 
-                ? <div id='loader' className='text-center'><p className='text-center'>loading...</p></div>
-                : <Main 
-                  products={this.state.products} 
-                  createProduct={this.createProduct}
-                  purchaseProduct={this.purchaseProduct} /> 
-              }
-            </main>
+        <Whole>
+          <NavBar 
+            account={this.state.account} 
+            ethPrice={this.state.ethPrice} 
+            ethLogo={this.state.ethLogo}
+          />
+          <div className='container-fluid mt-5'>
+            <div className='row'>
+              <main role='main' className='col-lg-12 d-flex'>
+                {this.state.loading 
+                  ? <div id='loader' className='text-center'><p className='text-center'>loading...</p></div>
+                  : <Main 
+                    products={this.state.products} 
+                    createProduct={this.createProduct}
+                    purchaseProduct={this.purchaseProduct} /> 
+                }
+              </main>
+            </div>
           </div>
-        </div>
+        </Whole>
       </div>
     );
   }
