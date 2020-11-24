@@ -29,8 +29,8 @@ class NavBar extends Component {
           <ul className='navbar-nav px-3'>
             <li className='nav-item text-nowrap d-none d-sm-none d-sm-block'>
                 {this.props.account 
-                    ? <small className='text-white'><span id='account'>🟢 User Account: {this.props.account}</span></small>
-                    : <small className='text-white'><span id='account'>User Account: Not Connected</span></small>
+                    ? <small className='text-white'><span id='account'>🟢 wallet: {this.props.account}</span></small>
+                    : <small className='text-white'><span id='account'>wallet: Not Connected</span></small>
                 }
             </li>
           </ul>
