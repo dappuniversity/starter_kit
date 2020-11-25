@@ -23,7 +23,7 @@ class App extends Component {
     await this.loadWeb3()
     await this.loadBlockchainData()
     // console.log(window.web3)
-    
+
     axios
       .get(
           "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true"
@@ -87,8 +87,8 @@ class App extends Component {
       ethPrice: 0,
       ethLogo: ''
     }
-    this.createProduct = this.createProduct.bind(this)
-    this.purchaseProduct = this.purchaseProduct.bind(this)
+    this.createProduct = this.createProduct
+    this.purchaseProduct = this.purchaseProduct
   }
   
 
@@ -97,7 +97,6 @@ class App extends Component {
     this.state.marketplace.methods.createProduct(name, price).send({ from: this.state.account })
     .once('receipt', (receipt) => {
       this.setState({ loading: false})
-      // window.ethereum.autoRefreshOnNetworkChange = true;
     })
   }
 
@@ -106,7 +105,6 @@ class App extends Component {
     this.state.marketplace.methods.purchaseProduct(id).send({ from: this.state.account, value: price })
     .once('receipt', (receipt) => {
       this.setState({ loading: false})
-      // window.ethereum.autoRefreshOnNetworkChange = true;
     })
   }
 

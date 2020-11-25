@@ -73,4 +73,9 @@ contract Marketplace {
         emit ProductPurchased(productCount, _product.name, _product.price, msg.sender, true);
     }
 
+    // function removeProduct(uint index)  external {
+    //     Product[index] = Product[Product.length - 1];
+    //     Product.length --;
+    // }
+
 }
