@@ -7,7 +7,6 @@ const Wrapper = styled.section`
   width: 100%;
   padding: 4em;
   background: rgba(70,130,180,1);
-  /* border: 1px red solid; */
 `;
 
 const ProductWrapper = styled.section`

@@ -19,7 +19,7 @@ class NavBar extends Component {
           <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
             <a
               className="navbar-brand col-sm-3 col-md-2 mr-0"
-              href="http://www.dappuniversity.com/bootcamp"
+              href="https://github.com/Istott/cypto-marketplace/tree/main"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -30,7 +30,7 @@ class NavBar extends Component {
             <li className='nav-item text-nowrap d-none d-sm-none d-sm-block'>
                 {this.props.account 
                     ? <small className='text-white'><span id='account'>🟢 wallet: {this.props.account}</span></small>
-                    : <small className='text-white'><span id='account'>wallet: Not Connected</span></small>
+                    : <small className='text-white'><span id='account'>wallet: Not connected, please connect MetaMask wallet to CRYPTOBASE</span></small>
                 }
             </li>
           </ul>
@@ -40,4 +40,4 @@ class NavBar extends Component {
     }
   }
   
-  export default NavBar;
+export default NavBar;

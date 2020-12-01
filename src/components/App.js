@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
 import axios from "axios";
-// import logo from '../logo.png';
-// import './App.css';
+
 import Marketplace from '../abis/Marketplace.json';
 import NavBar from './NavBar';
-import Main from './Main';
+import Main from './MainComponent';
 
 import styled from 'styled-components';
 
@@ -22,14 +21,12 @@ class App extends Component {
   async componentWillMount() {
     await this.loadWeb3()
     await this.loadBlockchainData()
-    // console.log(window.web3)
 
     axios
       .get(
           "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true"
       )
       .then(res => {
-          console.log(res.data[1])
           this.setState({ ethPrice: res.data[1].current_price})
           this.setState({ ethLogo: res.data[1].image})
       })
@@ -40,6 +37,7 @@ class App extends Component {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
       await window.ethereum.eth_requestAccounts
+      window.ethereum.autoRefreshOnNetworkChange = false;
     }
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider)
@@ -73,7 +71,7 @@ class App extends Component {
       }
       this.setState({ loading: false })
     } else {
-      window.alert('Marketplace contract not deployed to detected network.')
+      window.alert('Marketplace contract not deployed to detected network. Connect to the Kovan Test Network.')
     }
   }
 

@@ -9,12 +9,22 @@
   - purchase the item on the marketplace using ethereum.
 - Constructed client side in ReactJS with bootstrap and styled-components libraries.
 
+### How to connect MetaMask wallet to website
+
+1. Please note that this application is setup ONLY on the Kovan Test Network.
+2. Go to MetaMask extension and select the wallet you want to connect.
+3. Confirm this wallet is setup on the Kovan Test Network.
+4. On the right side of account name, select the 3 dots for more options, select 'Connected sites'.
+5. Select 'Manually connect to current site'.
+6. Select all accounts you wish to connect to CRYPTOBASE website then press 'next'.
+7. Press 'Connect'. After which you should see that you are connected. Refresh the page.
+
 ### What technologies, languages and libraries were used
 
 - Solidity
 - JavaScript
 - ReactJS
-- Bootstrap, reactstrap
+- Bootstrap/reactstrap
 - Styled-components
 - Web3
 - Chai
