@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import  Home from '../components/pages/Home';
 import  About  from '../components/pages/About';
 import { RegisterProperty } from '../components/RegisterProperty'
-
+import '../components/App.css'
+import { PropertyPricing } from '../components/PropertyPricing';
 
 
 function RouteConfig() {
     return (
-        <div>
+        <div >
           <Router>
             <nav className="navbar bg-dark shadow">
                 <a
@@ -20,14 +21,15 @@ function RouteConfig() {
                     Smart Estate
                 </a>
                 <Link to="/"> Home </Link>
-                <Link to="/about"> About </Link>
                 <Link to="/RegisterProperty"> Register Property </Link>
+                <Link to="/about"> About </Link>
             </nav>
         
             <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/About" component={About} />
             <Route exact path="/RegisterProperty" component={RegisterProperty} />
+            <Route exact path="/PropertyPricing" component={PropertyPricing} />
             {/* <Route exact path="/product" component={PropertyList} />
             <Route path="/product/:id" component={PropertyItem} /> */}
             <Route path="*" component={()=><h2> 404 Not Found</h2>} />

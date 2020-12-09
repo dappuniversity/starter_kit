@@ -5,12 +5,12 @@ pragma experimental ABIEncoderV2;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract SmartEstate is ERC721 {
-    uint256 private buyerId;
-    uint256 public tokenId;
-    
-    PropertyDetails[] public property;
+   uint256 private buyerId;
+    uint256 private tokenId;
+    event Transfer(address,address,address);
+    event property_Pricing(uint256);
     enum offerApproval {pending, approved, rejected}
-
+    event saleStatus(bool);
     struct PropertyDetails {
         address sellerAddress;
         uint256 propertyId;
@@ -22,6 +22,15 @@ contract SmartEstate is ERC721 {
         uint256 price;
         bool saleStatus;
     }
+    event property_detail(address,
+        uint256,
+        string,
+        string,
+        uint256,
+        string,
+        string,
+        uint256,
+        bool);
 
     struct BuyerInfo {
         uint256 bId;
@@ -29,7 +38,8 @@ contract SmartEstate is ERC721 {
         uint256 buyerOffer;
         offerApproval request;
     }
-
+    event buyer_Info(BuyerInfo);
+    
     modifier propertyOwner() {
         require(
             OnlyOwner[msg.sender].sellerAddress == msg.sender,
@@ -37,13 +47,12 @@ contract SmartEstate is ERC721 {
         );
         _;
     }
-    mapping (uint256 => PropertyDetails) public lands;
+
     mapping(address => PropertyDetails) public OnlyOwner;
     mapping(uint256 => address) public PropertyList;
     mapping(address => BuyerInfo) public BuyerList;
     mapping(uint256 => BuyerInfo[]) public AllBuyers;
     mapping(uint256 => bool) public Offers;
-    
 
     constructor() public ERC721("Smart Estate Properties", "ESP") {}
 
@@ -77,10 +86,9 @@ contract SmartEstate is ERC721 {
         });
         OnlyOwner[msg.sender] = tempDetails;
         PropertyList[thisId] = msg.sender;
-        property.push(tempDetails);
+        emit property_detail( msg.sender, thisId, _propertyAddress, _city,_room, _area, _propertyType, _priceInEther, false);
         return true;
     }
-
 
     function EnablePropertySale(uint256 PropertyId_TokenId)
         public
@@ -92,10 +100,16 @@ contract SmartEstate is ERC721 {
             "Error: INVALID Property id or token id"
         );
         OnlyOwner[PropertyList[PropertyId_TokenId]].saleStatus = true;
+        emit saleStatus(true);
         return true;
     }
 
-    function PropertyPricing(uint256 PropertyId_TokenId)
+    event name1(string);
+    function test() public  {
+    emit name1("Asim");
+    }
+
+    function PropertyPricing(uint256 PropertyId_TokenId)view
         public
         propertyOwner
         returns (uint256)
@@ -104,6 +118,8 @@ contract SmartEstate is ERC721 {
             _exists(PropertyId_TokenId),
             "Error: INVALID Property id or token id"
         );
+        // uint256 price = property_Pricing(OnlyOwner[PropertyList[PropertyId_TokenId]].price);
+        // emit property_Pricing(OnlyOwner[PropertyList[PropertyId_TokenId]].price);   
         return OnlyOwner[PropertyList[PropertyId_TokenId]].price;
     }
 
@@ -132,7 +148,7 @@ contract SmartEstate is ERC721 {
         AllBuyers[PropertyId_TokenId].push(tempDetails);
         BuyerList[msg.sender] = tempDetails;
         BuyerList[msg.sender].request = offerApproval.pending;
-
+        emit buyer_Info(tempDetails);
         return true;
     }
 
@@ -213,5 +229,7 @@ contract SmartEstate is ERC721 {
             .sellerAddress;
         _transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
         emit Transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
+        return true;
+        
     }
 }

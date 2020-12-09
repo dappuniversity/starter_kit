@@ -5,6 +5,8 @@ export const RegisterProperty = (property)=>{
     }
 }
 
+
+
 export const EnablePropertySale = (tokenId) =>{
     return {
         type:'ENABLE_PROPERTY_SALE',
@@ -12,12 +14,12 @@ export const EnablePropertySale = (tokenId) =>{
     }
 }
 
-// export const PropertyList = (tokenId) =>{
-// return {
-//     type:'PROPERTY_LIST',
-//     payload: tokenId
-// }
-// }
+export const PropertyPricing = (PropertyId_TokenId) =>{
+    return {
+        type: 'PROPERTY_PRICING',
+        payload: PropertyId_TokenId
+    }
+}
 
 export const setupWeb3 = (web3)=>{
     return {
@@ -31,6 +33,13 @@ export const setupContract = (contract)=>{
     return {
         type: 'SETUP_CONTRACT',
         payload:contract
+    }
+}
+
+export const property_detail = (contract)=>{
+    return {
+        type: 'PROPERTY_DETAIL',
+        payload: contract
     }
 }
 

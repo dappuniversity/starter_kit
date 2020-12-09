@@ -1,32 +1,36 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract,EnablePropertySale } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing,property_detail } from './actions';
 import Web3 from 'web3';
+import {useState} from 'react'
 
 //import {SMART_ESTATE_ABI, SMART_ESTATE_ADDRESS} from '../components/utils/SmartEstate'
 import SmartEstate from "../abis/SmartEstate.json";
 
 export const loadBlockchain = async (dispatch) => {
+    
     try {
-
-        //const [landCount, setlandCount] = useState({})
         console.log("web3 =", Web3);
         console.log("web3.givenProvider = ", Web3.givenProvider);
         if (Web3.givenProvider) {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            //const contract = new web3.eth.contract(SMART_ESTATE_ABI,SMART_ESTATE_ADDRESS)
-            //const networkId = web3.eth.net.getId()
-            //const networkData = SmartEstate.networks[networkId]
-            const address = "0xc780Da100Ac3c2D2d89E06FFF4638F19B53D9eD5"
+           //  const contract = new web3.eth.contract(SMART_ESTATE_ABI,SMART_ESTATE_ADDRESS)
+            // const networkId = await web3.eth.net.getId()
+            //     .then(console.log(networkId))
+            // const contractAddress=SmartEstate.networks[networkId].address
+            // const networkData = SmartEstate.networks[networkId]
+            //console.log(networkData)
+           
+           // 0x9f321623df851eB949e89c0E3eb5CE601b176c2B
+             const address = "0x36d8f42abb5c148CEeA204446301f70313d9c9Ce"
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             const accounts = await web3.eth.getAccounts();
             dispatch(addEthereumAccounts(accounts))
-            console.log({ contract })
-            console.log("Contract", contract)
-            console.log("contract.methods", contract.methods);
+           // console.log({ contract })
+           // console.log("Contract", contract)
+          //  console.log("contract.methods", contract.methods);
             const landCount = await contract.methods.tokenId().call()
-            //setlandCount(landCount)
 
             for (let i = 0; i <= landCount.length; i++) {
                 const { _propertyAddress, _city, _room, _area, _priceInEther, _propertyType, _saleStatus, _tokenUri } = await contract.methods.property(i).call
@@ -34,8 +38,17 @@ export const loadBlockchain = async (dispatch) => {
                     _propertyAddress, _city, _room, _area, _priceInEther, _propertyType, _saleStatus, _tokenUri
                 }
                 dispatch(RegisterProperty(propertyObj));
-                //dispatch(EnablePropertySale(tokenId))
             }
+
+            // const landCount = await contract.methods.tokenId().call()
+            // for(var i = 1; i <= landCount; i++) {
+            //     const land = await contract.methods.lands(i).call()
+            //     // this.setState({
+            //     //   lands: [...this.state.lands, land]
+            //     // })
+            //     dispatch(Lands(landCount));
+            //   }
+
 
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
@@ -51,8 +64,8 @@ export const loadBlockchain = async (dispatch) => {
 export const registerPropertyAsync = async (contract, accounts, property, dispatch) => {
     console.log("before transaction")
 
-    const register_property = await contract.methods.RegisterProperty(property._propertyAddress, property._city, property._room, property._area, property._priceInEther, property._propertyType, property._saleStatus, property._tokenUri).send({ from: accounts[0] });
-    console.log("after transaction ", register_property)
+    const receipt = await contract.methods.RegisterProperty(property._propertyAddress, property._city, property._room, property._area, property._priceInEther, property._propertyType, property._saleStatus, property._tokenUri).send({ from: accounts[0] });
+    console.log("after transaction ", receipt)
     dispatch(RegisterProperty(property))
 }
 
@@ -63,9 +76,24 @@ export const enablePropertySale = async (contract, accounts, tokenId, dispatch) 
     dispatch(EnablePropertySale(tokenId))
 }
 
-// export const propertylist = async (contract,accounts,tokenId,dispatch) => {
-//     console.log("before transaction")
-//     const receipt = await contract.methods.PropertyList(tokenId).send({from:accounts[0]});
-//     console.log("after transaction ", receipt)
-//     dispatch(PropertyList(tokenId))
-// }
+export const propertyPricing = async (contract, accounts, PropertyId_TokenId, dispatch) => {
+    console.log("before transaction");
+    const receipt = await contract.methods.PropertyPricing(PropertyId_TokenId).send({ from: accounts[0] })
+    console.log("after trasnaction", receipt);
+    dispatch(PropertyPricing(PropertyId_TokenId));
+}
+
+export const property_Detail = async (contract)=>{
+    
+    console.log("before transaction");
+    //,(err,event)=>{ console.log(event[0].returnValues)}
+        const receipt =contract? await contract.getPastEvents('property_detail',{fromBlock: 0, toBlock: "latest"}) : null;
+                //event[0].returnValues
+        //console.log(events);
+     //console.log("after tranacction", receipt);
+     
+       // dispatch(property_detail(events));
+    return receipt;
+}
+
+

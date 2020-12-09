@@ -4,13 +4,14 @@ import { registerPropertyAsync } from '../store/asyncActions'
 import Loader from '../images/loader.gif'
 import {EthAccountInfo} from './EthAccountInfo'
 import {EnablePropertySale} from './EnablePropertySale'
+// import { PropertyPricing } from '../store/actions'
 
 export const RegisterProperty = () => {
     const [_propertyAddress, setpropertyAddress] = useState("");
     const [_city, setcity] = useState("")
     const [_room, setroom] = useState(0)
     const [_area, setarea] = useState("")
-    const [_priceInEther, setpriceInEther] = useState(0)
+    const [_priceInEther, setpriceInEther] = useState(1000000000000000000)
     const [_propertyType, setproeprtyType] = useState("")
     const [_saleStatus, setsaleStatus] = useState(false)
     const [_tokenUri, settokenUri] = useState("")
@@ -98,6 +99,7 @@ export const RegisterProperty = () => {
                 }
             </form>
             <EnablePropertySale/>
+      
         </>
     )
 
