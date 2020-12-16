@@ -22,34 +22,15 @@ export const loadBlockchain = async (dispatch) => {
             //console.log(networkData)
            
            // 0x9f321623df851eB949e89c0E3eb5CE601b176c2B
-             const address = "0x36d8f42abb5c148CEeA204446301f70313d9c9Ce"
+             const address = "0xEa723Df520923c9c6151CbF5dd5e96EFB1a36E4F"
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             const accounts = await web3.eth.getAccounts();
             dispatch(addEthereumAccounts(accounts))
-           // console.log({ contract })
-           // console.log("Contract", contract)
-          //  console.log("contract.methods", contract.methods);
-            const landCount = await contract.methods.tokenId().call()
+           
+             const events=  contract ? await contract.getPastEvents('property_detail',{fromBlock: 0, toBlock: "latest"}) : null;
 
-            for (let i = 0; i <= landCount.length; i++) {
-                const { _propertyAddress, _city, _room, _area, _priceInEther, _propertyType, _saleStatus, _tokenUri } = await contract.methods.property(i).call
-                let propertyObj = {
-                    _propertyAddress, _city, _room, _area, _priceInEther, _propertyType, _saleStatus, _tokenUri
-                }
-                dispatch(RegisterProperty(propertyObj));
-            }
-
-            // const landCount = await contract.methods.tokenId().call()
-            // for(var i = 1; i <= landCount; i++) {
-            //     const land = await contract.methods.lands(i).call()
-            //     // this.setState({
-            //     //   lands: [...this.state.lands, land]
-            //     // })
-            //     dispatch(Lands(landCount));
-            //   }
-
-
+            console.log(events)
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
         }
@@ -87,13 +68,14 @@ export const property_Detail = async (contract)=>{
     
     console.log("before transaction");
     //,(err,event)=>{ console.log(event[0].returnValues)}
-        const receipt =contract? await contract.getPastEvents('property_detail',{fromBlock: 0, toBlock: "latest"}) : null;
+    const receipt =contract ? await contract.getPastEvents('property_detail',{fromBlock: 0, toBlock: "latest"}) : null;
                 //event[0].returnValues
         //console.log(events);
-     //console.log("after tranacction", receipt);
+     console.log("after transaction", receipt);
      
        // dispatch(property_detail(events));
     return receipt;
 }
+
 
 

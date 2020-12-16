@@ -11,6 +11,7 @@ contract SmartEstate is ERC721 {
     event property_Pricing(uint256);
     enum offerApproval {pending, approved, rejected}
     event saleStatus(bool);
+
     struct PropertyDetails {
         address sellerAddress;
         uint256 propertyId;
@@ -22,15 +23,16 @@ contract SmartEstate is ERC721 {
         uint256 price;
         bool saleStatus;
     }
-    event property_detail(address,
-        uint256,
-        string,
-        string,
-        uint256,
-        string,
-        string,
-        uint256,
-        bool);
+    
+    event property_detail(address useraddress,
+        uint256 propertyId ,
+        string propertyAddress,
+        string city,
+        uint256 room,
+        string area,
+        string propertyType,
+        uint256 price,
+        bool saleStatus);
 
     struct BuyerInfo {
         uint256 bId;
