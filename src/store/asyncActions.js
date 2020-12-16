@@ -1,4 +1,4 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing,property_detail } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing,Events } from './actions';
 import Web3 from 'web3';
 import {useState} from 'react'
 
@@ -20,8 +20,6 @@ export const loadBlockchain = async (dispatch) => {
             // const contractAddress=SmartEstate.networks[networkId].address
             // const networkData = SmartEstate.networks[networkId]
             //console.log(networkData)
-           
-           // 0x9f321623df851eB949e89c0E3eb5CE601b176c2B
              const address = "0xEa723Df520923c9c6151CbF5dd5e96EFB1a36E4F"
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
@@ -29,7 +27,7 @@ export const loadBlockchain = async (dispatch) => {
             dispatch(addEthereumAccounts(accounts))
            
              const events=  contract ? await contract.getPastEvents('property_detail',{fromBlock: 0, toBlock: "latest"}) : null;
-
+            // dispatch(Events(events))
             console.log(events)
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))

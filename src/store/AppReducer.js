@@ -6,7 +6,11 @@ export default (state, action) => {
                 properties: [action.payload, ...state.properties]
             }
 
-     
+        case 'EVENTS':
+            return {
+                ...state,
+                events: [action.payload,...state.events]
+            }
 
         case 'ENABLE_PROPERTY_SALE':
             return {
