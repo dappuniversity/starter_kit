@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import  Home from '../components/pages/Home';
 import  About  from '../components/pages/About';
 import { RegisterProperty } from '../components/RegisterProperty'
+import { PropertyList } from '../components/PropertyList'
+import PropertyItem from '../components/PropertyItem'
 import '../components/App.css'
-import { PropertyPricing } from '../components/PropertyPricing';
+
 
 
 function RouteConfig() {
@@ -29,11 +31,10 @@ function RouteConfig() {
             <Route exact path="/" component={Home} />
             <Route exact path="/About" component={About} />
             <Route exact path="/RegisterProperty" component={RegisterProperty} />
-            <Route exact path="/PropertyPricing" component={PropertyPricing} />
-            {/* <Route exact path="/product" component={PropertyList} />
-            <Route path="/product/:id" component={PropertyItem} /> */}
+            {/* <Route exact path="/PropertyPricing" component={PropertyPricing} /> */}
+            <Route exact path="/property" component={PropertyList} />
+            <Route path="/property/:id" component={PropertyItem} />
             <Route path="*" component={()=><h2> 404 Not Found</h2>} />
-               
 
             </Switch>
         </Router>
