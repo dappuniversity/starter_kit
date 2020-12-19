@@ -11,10 +11,10 @@ export const PropertyList = () => {
         async function getData() {
             const response = await property_Detail(contract)
             setEvents(response)
-
         }
         getData();
     }, [])
+
     let returnValues = []
     const alldata = () => {
         events.map((item, index) => {
@@ -22,6 +22,7 @@ export const PropertyList = () => {
         })
         return returnValues
     }
+    
     returnValues = alldata()
 
     return (
@@ -30,7 +31,7 @@ export const PropertyList = () => {
                 {returnValues.map(item => {
                     for (var a in item) {
                         var id = item[1]
-                        return <Link keys={item[0]} to={`/property/${id}`} className="eachItem" >
+                        return <Link keys={id} to={`/property/${id}`} className="eachItem" >
                             <h5 ><b>Seller Address: </b>{item[0]}</h5>
                             <h5 >Property ID: {id}</h5>
                             <h5 >Property Address: {item[2]}</h5>
