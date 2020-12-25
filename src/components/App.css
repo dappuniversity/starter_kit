@@ -1,4 +1,4 @@
-/* Styles go here */
+Styles go here
 body {
     background-color: #00bcd4;
     margin: 0 auto;
@@ -16,3 +16,84 @@ body {
    
 }
 
+h3, image{
+    text-align: center;
+}
+
+.navContainer{
+    margin:0 10px;
+    color: black;
+    text-decoration: none;
+    padding:8px;
+    border:1px solid;
+    border-radius:5px
+}
+
+
+
+.eachItem{
+    padding: 20px;
+    text-decoration: transparent;
+    color: black;
+  }
+
+ .link {
+   text-align: center;
+  }
+
+  .eachItem :hover{
+    padding: 5px;
+    /* background-color: rgb(149, 205, 207); */
+    box-shadow: 0 0 10px rgb(149, 205, 207);
+    text-decoration: transparent;
+  }
+
+.Products{
+display: flex;
+flex-direction: row;
+margin-left: 150px;
+margin-right: 150px;
+justify-content: space-around;
+flex-wrap: wrap;
+}
+
+.text{
+  text-decoration: transparent;
+  padding: 5px;
+  text-transform: uppercase;
+  color: #282c34;
+  margin-left: 30px;
+}
+
+.align{
+  text-align: center;
+}
+
+.title{
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

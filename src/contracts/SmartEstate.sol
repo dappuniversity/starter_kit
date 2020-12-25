@@ -1,15 +1,15 @@
 pragma solidity ^0.6.0;
 pragma experimental ABIEncoderV2;
-//smart-estate\node_modules\@openzeppelin\contracts\token\ERC721\ERC721.sol
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract SmartEstate is ERC721 {
-    uint256 private buyerId;
-    uint256 public tokenId;
-    
-    PropertyDetails[] public property;
+   uint256 private buyerId;
+    uint256 private tokenId;
+    event Transfer(address,address,address);
+    event property_Pricing(uint256);
     enum offerApproval {pending, approved, rejected}
+    event saleStatus(bool);
 
     struct PropertyDetails {
         address sellerAddress;
@@ -20,8 +20,20 @@ contract SmartEstate is ERC721 {
         string area;
         string propertyType;
         uint256 price;
+        string image;
         bool saleStatus;
     }
+    
+    event property_detail(address useraddress,
+        uint256 propertyId ,
+        string propertyAddress,
+        string city,
+        uint256 room,
+        string area,
+        string propertyType,
+        uint256 price,
+        string image,
+        bool saleStatus);
 
     struct BuyerInfo {
         uint256 bId;
@@ -29,7 +41,8 @@ contract SmartEstate is ERC721 {
         uint256 buyerOffer;
         offerApproval request;
     }
-
+    event buyer_Info(uint256 buyerId,address buyerAddress,uint256 buyerOffer,offerApproval request);
+    
     modifier propertyOwner() {
         require(
             OnlyOwner[msg.sender].sellerAddress == msg.sender,
@@ -37,13 +50,12 @@ contract SmartEstate is ERC721 {
         );
         _;
     }
-    mapping (uint256 => PropertyDetails) public lands;
+
     mapping(address => PropertyDetails) public OnlyOwner;
     mapping(uint256 => address) public PropertyList;
     mapping(address => BuyerInfo) public BuyerList;
     mapping(uint256 => BuyerInfo[]) public AllBuyers;
     mapping(uint256 => bool) public Offers;
-    
 
     constructor() public ERC721("Smart Estate Properties", "ESP") {}
 
@@ -54,6 +66,7 @@ contract SmartEstate is ERC721 {
         string memory _area,
         uint256 _priceInEther,
         string memory _propertyType,
+        string memory _image,
         bool _saleStatus,
         string memory _tokenUri
     ) public returns (bool) {
@@ -73,14 +86,14 @@ contract SmartEstate is ERC721 {
             area: _area,
             propertyType: _propertyType,
             price: _priceInEther,
-            saleStatus: false
+            image: _image,
+            saleStatus: _saleStatus
         });
         OnlyOwner[msg.sender] = tempDetails;
         PropertyList[thisId] = msg.sender;
-        property.push(tempDetails);
+        emit property_detail( msg.sender, thisId, _propertyAddress, _city,_room, _area, _propertyType, _priceInEther, _image,false);
         return true;
     }
-
 
     function EnablePropertySale(uint256 PropertyId_TokenId)
         public
@@ -92,10 +105,11 @@ contract SmartEstate is ERC721 {
             "Error: INVALID Property id or token id"
         );
         OnlyOwner[PropertyList[PropertyId_TokenId]].saleStatus = true;
+        emit saleStatus(true);
         return true;
     }
 
-    function PropertyPricing(uint256 PropertyId_TokenId)
+    function PropertyPricing(uint256 PropertyId_TokenId)view
         public
         propertyOwner
         returns (uint256)
@@ -104,6 +118,7 @@ contract SmartEstate is ERC721 {
             _exists(PropertyId_TokenId),
             "Error: INVALID Property id or token id"
         );
+          
         return OnlyOwner[PropertyList[PropertyId_TokenId]].price;
     }
 
@@ -132,7 +147,7 @@ contract SmartEstate is ERC721 {
         AllBuyers[PropertyId_TokenId].push(tempDetails);
         BuyerList[msg.sender] = tempDetails;
         BuyerList[msg.sender].request = offerApproval.pending;
-
+        emit buyer_Info(buyerId, msg.sender,offerInEthers,offerApproval.pending);
         return true;
     }
 
@@ -213,5 +228,7 @@ contract SmartEstate is ERC721 {
             .sellerAddress;
         _transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
         emit Transfer(BuyerAddress, msg.sender, PropertyId_TokenId);
+        return true;
+        
     }
 }

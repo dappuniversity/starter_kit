@@ -1,8 +1,7 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 function Property({ property }) {
-    //_propertyAddress, _city, _room, _area, _priceInEther, _propertyType, _saleStatus, _tokenUri
-
+   
     return (
 
         <Card style={{ width: '18rem' }}>

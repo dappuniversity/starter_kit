@@ -6,15 +6,21 @@ export default (state, action) => {
                 properties: [action.payload, ...state.properties]
             }
 
-        // case 'PROPERTY_LIST':
-        //     return {
-        //         ...state,
-        //         tokenIds: [action.payload,...state.tokenIds]
-        //     }
+        case 'EVENTS':
+            return {
+                ...state,
+                events: [action.payload,...state.events]
+            }
+
         case 'ENABLE_PROPERTY_SALE':
             return {
                 ...state,
-                tokenIds: [ action.payload,...state.tokenIds]
+                tokenId: [action.payload, ...state.tokenId]
+            }
+        case 'PROPERTY_PRICING':
+            return {
+                ...state,
+                PropertyId_TokenIds: [action.payload, ...state.PropertyId_TokenIds]
             }
         case 'SETUP_WEB3':
             return {
@@ -28,6 +34,13 @@ export default (state, action) => {
                 ...state,
                 contract: action.payload
             }
+
+        case 'PROPERTY_DETAIL':
+            return {
+                ...state,
+                contract: action.payload
+            }
+
         case 'ADD_ETHEREUM_ACCOUNTS':
             return {
                 ...state,
