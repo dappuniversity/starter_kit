@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import { useStore } from '../context/GlobalState'
 import { property_Detail } from "../store/asyncActions";
 import { useParams } from 'react-router-dom'
@@ -68,35 +66,32 @@ function PropertyItem() {
                     const useraddress = dataItem[0]
                     const tokenId = dataItem[1]
                     const address = dataItem[2]
+                    // console.log(typeof (useraddress), useraddress)
 
-                    return <div className={classes.root}>
-                        <Paper className={classes.paper}>
-                        <Grid container spacing={2}>    
-                        <div keys={id}>
-                        <img src={`https://ipfs.infura.io/ipfs/${dataItem[8]}`} width="680px" />
+                    return <div keys={id}>
                         <br />
                         <h3><b>Owner Address:</b> {useraddress}</h3>
                         <br />
+                        <img src={`https://ipfs.infura.io/ipfs/${dataItem[8]}`} width="680px" />
                         <h3>Token Id: {tokenId}</h3>
                         <h3>Property Address: {address}</h3>
                         <h3>City: {dataItem[3]}</h3>
                         <h3>Rooms: {dataItem[4]}</h3>
                         <h3>Area: {dataItem[5]}</h3>
                         <h3>Property Type: {dataItem[6]}</h3>
-                        <p>Price: {Web3.utils.fromWei(dataItem[7].toString(), 'Ether')} Eth</p>
+                        <h3>Price: {Web3.utils.fromWei(dataItem[7].toString(), 'Ether')} Eth</h3>
+
                     </div>
-                    </Grid>
-                    </Paper>
-                    
-                    </div>
-                    
                 } catch (error) {
                     console.log(error);
                 }
             }
         }
         else {
-           return <div>You are trying to direct access to properties or Refreshing the page is not allowed</div>
+           return <div>
+               <h3>Loading</h3>
+               <h5>Warning: You are trying to direct access to properties or Refreshing the page is not allowed!</h5>
+               </div>
         }
     }
 

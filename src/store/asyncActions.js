@@ -11,7 +11,7 @@ export const loadBlockchain = async (dispatch) => {
             const web3 = new Web3(Web3.givenProvider);
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
-            const address = "0x1CE74706175Ba2E23761091Cf252900e73764A3A"
+            const address = "0xF10F322bf589b873B4C53bEef0ca644D32730b79"
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             const accounts = await web3.eth.getAccounts();
@@ -19,7 +19,7 @@ export const loadBlockchain = async (dispatch) => {
 
             const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
 
-
+            console.log(events)
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
         }

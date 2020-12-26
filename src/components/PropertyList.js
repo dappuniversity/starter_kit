@@ -7,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Web3 from 'web3'
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -69,8 +68,8 @@ export const PropertyList = () => {
                                             <h5 >Property ID: {id}</h5>
                                             <h5 >Property Address: {item[2]}</h5>
                                             <h5 >City: {item[3]}</h5>
-                                            <h5>Room: {item[4]}</h5>
-                                            <h5 >Area: {item[5]}</h5>
+                                            {/* <h5>Room: {item[4]}</h5>
+                                            <h5 >Area: {item[5]}</h5> */}
                                             <h5 >Property Type: {item[6]}</h5>
                                             <h5 >Price: {Web3.utils.fromWei(item[7].toString(), 'Ether')} Eth</h5>
                                         </Link>

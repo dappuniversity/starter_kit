@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import  Home from '../components/pages/Home';
 import  About  from '../components/pages/About';
 import { RegisterProperty } from '../components/RegisterProperty'
-import propertyList from '../components/pages/Property-Listing'
+import propertyList from '../components/pages/PropertyListing'
 import PropertyItem from '../components/PropertyItem'
 import '../components/App.css'
 
@@ -24,8 +24,9 @@ function RouteConfig() {
                 </a>
                 <Link to="/"> Home </Link>
                 <Link to="/RegisterProperty"> Register Property </Link>
+                <Link to="/propertyList"> Property List </Link>
                 <Link to="/about"> About </Link>
-                <Link to="/propertylist"> Property List </Link>
+              
             </nav>
         
             <Switch>

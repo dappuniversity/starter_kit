@@ -5420,7 +5420,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-12-25T10:08:29.027Z",
+  "updatedAt": "2020-12-25T15:02:44.296Z",
   "devdoc": {
     "details": "Collection of functions related to the address type",
     "methods": {}
