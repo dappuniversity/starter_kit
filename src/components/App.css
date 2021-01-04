@@ -20,6 +20,10 @@ h3, image{
     text-align: center;
 }
 
+.bids >tr,td{
+  border: 1px solid black;
+}
+
 .navContainer{
     margin:0 10px;
     color: black;

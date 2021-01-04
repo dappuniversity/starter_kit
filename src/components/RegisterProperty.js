@@ -11,7 +11,6 @@ export const RegisterProperty = () => {
     const ipfsClient = require('ipfs-http-client')
     const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
-
     const [_propertyAddress, setpropertyAddress] = useState("");
     const [_city, setcity] = useState("")
     const [_room, setroom] = useState(0)

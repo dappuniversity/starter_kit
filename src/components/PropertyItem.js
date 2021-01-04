@@ -4,30 +4,30 @@ import { useStore } from '../context/GlobalState'
 import { property_Detail } from "../store/asyncActions";
 import { useParams } from 'react-router-dom'
 import Web3 from 'web3'
+import BuyerRequest from './BuyerRequest';
+import  OfferStatus  from './OfferStatus';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-      
+        flexGrow: 1,
+
     },
     paper: {
-      padding: theme.spacing(2),
-      margin: 'auto',
-      maxWidth: 500,
+        padding: theme.spacing(2),
+        margin: 'auto',
+        maxWidth: 500,
     },
     image: {
-      width: 128,
-      height: 128,
+        width: 128,
+        height: 128,
     },
     img: {
-      margin: 'auto',
-      display: 'block',
-      maxWidth: '100%',
-      maxHeight: '100%',
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
     },
-  }));
-  
-
+}));
 
 
 function PropertyItem() {
@@ -39,18 +39,26 @@ function PropertyItem() {
 
     useEffect(() => {
         async function getData() {
-            const response = await property_Detail(contract)
-            setEvents(response)
+            getProperty()
         }
         getData();
     }, [])
 
+    const getProperty =async()=>{
+        const response = await property_Detail(contract)
+        setEvents(response)
+    }
+
     let returnValues = []
     const alldata = () => {
-        events.map((item, index) => {
-            return returnValues[index] = item.returnValues
-        })
-        return returnValues
+        if(events){
+            (events).map((item, index) => {
+                return returnValues[index] = item.returnValues
+            })
+            return returnValues
+        }else{
+           return getProperty()
+        }
     }
     returnValues = alldata()
     const val = id - 1;
@@ -66,9 +74,7 @@ function PropertyItem() {
                     const useraddress = dataItem[0]
                     const tokenId = dataItem[1]
                     const address = dataItem[2]
-                    // console.log(typeof (useraddress), useraddress)
-
-                    return <div keys={id}>
+                    return <div> <div keys={id}>
                         <br />
                         <h3><b>Owner Address:</b> {useraddress}</h3>
                         <br />
@@ -82,16 +88,19 @@ function PropertyItem() {
                         <h3>Price: {Web3.utils.fromWei(dataItem[7].toString(), 'Ether')} Eth</h3>
 
                     </div>
+                    {dataItem[0] === accounts[0] ? <OfferStatus PropertyId_TokenId={dataItem[1]} /> : <BuyerRequest PropertyId_TokenId={dataItem[1]} />  }
+                 
+                    </div>
                 } catch (error) {
                     console.log(error);
                 }
             }
         }
         else {
-           return <div>
-               <h3>Loading</h3>
-               <h5>Warning: You are trying to direct access to properties or Refreshing the page is not allowed!</h5>
-               </div>
+            return <div>
+                <h3>Loading</h3>
+                <h5>Warning: You are trying to direct access to properties or Refreshing the page is not allowed!</h5>
+            </div>
         }
     }
 

@@ -35,28 +35,37 @@ export const PropertyList = () => {
     useEffect(() => {
         async function getData() {
             const response = await property_Detail(contract)
-            setEvents(response)
+        setEvents(response)
         }
         getData();
     }, [])
 
+    const getProperties = async() =>{
+        const response = await property_Detail(contract)
+        setEvents(response)
+    }
+
     let returnValues = []
     const alldata = () => {
-        events.map((item, index) => {
+        if(events){
+        (events).map((item, index) => {
             return returnValues[index] = item.returnValues
         })
-        return returnValues
+        return returnValues}
+        else{
+            return getProperties()
+        }
     }
     const classes = useStyles();
 
     returnValues = alldata()
+    let reverseSort = returnValues.reverse()
     return (
         <>
-
             <div className="Products">
                 <div className={classes.root}>
                     <Grid container spacing={3}>
-                        {returnValues.map(item => {
+                        {(reverseSort||returnValues).map(item => {
                             for (var a in item) {
                                 var id = item[1]
                                 return <Grid item s={12} sm={4} key={id}>

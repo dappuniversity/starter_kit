@@ -6,6 +6,18 @@ export default (state, action) => {
                 properties: [action.payload, ...state.properties]
             }
 
+        case 'OFFER_STATUS':
+            return {
+                ...state,
+                PropertyId_TokenIds: action.payload
+            }
+
+        case 'BUYING_REQUEST': 
+        return {
+            ...state,
+            offers: action.payload
+        }
+
         case 'EVENTS':
             return {
                 ...state,

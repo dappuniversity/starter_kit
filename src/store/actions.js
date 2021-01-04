@@ -5,6 +5,20 @@ export const RegisterProperty = (property) => {
     }
 }
 
+export const OfferStatus = (PropertyId_TokenId) => {
+    return {
+        type: 'OFFER_STATUS',
+        payload: PropertyId_TokenId
+    }
+}
+
+export const BuyingRequest = (offer) => {
+    return {
+        type: 'BUYING_REQUEST',
+        payload: offer
+    }
+}
+
 export const Events = (events) => {
     return {
         type: 'EVENTS',
@@ -62,4 +76,5 @@ export const web3LoadingError = (errorMessage) => {
         payload: errorMessage
     }
 }
+
 

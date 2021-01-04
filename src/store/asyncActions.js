@@ -1,4 +1,4 @@
-import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, Events } from './actions';
+import { setupWeb3, web3LoadingError, addEthereumAccounts, RegisterProperty, setupContract, EnablePropertySale, PropertyPricing, Events, BuyingRequest, OfferStatus } from './actions';
 import Web3 from 'web3';
 import SmartEstate from "../abis/SmartEstate.json";
 
@@ -14,12 +14,13 @@ export const loadBlockchain = async (dispatch) => {
             const address = "0xF10F322bf589b873B4C53bEef0ca644D32730b79"
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
+            console.log(contract)
             const accounts = await web3.eth.getAccounts();
             dispatch(addEthereumAccounts(accounts))
 
             const events = contract ? await contract.getPastEvents('property_detail', { fromBlock: 0, toBlock: "latest" }) : null;
 
-            console.log(events)
+            // console.log(events)
         } else {
             dispatch(web3LoadingError("Please install an Ethereum-compatible browser or extension like Metamask to use this DAPP"))
         }
@@ -62,5 +63,18 @@ export const property_Detail = async (contract) => {
     return receipt;
 }
 
+export const buyer_Request = async (contract, accounts, offer, dispatch) => {
+    console.log("before transaction")
 
+    const receipt = await contract.methods.BuyingRequest(offer.PropertyId_TokenId, offer.value).send({ from: accounts[0] });
+    console.log("after transaction ", receipt)
+    dispatch(BuyingRequest(offer))
+}
 
+export const offerStatus = async (contract, PropertyId_TokenId, dispatch) => {
+    console.log("before transaction")
+    const receipt = await contract.methods.OfferStatus(PropertyId_TokenId).call()
+
+    console.log("after transaction ", receipt)
+    dispatch(OfferStatus(PropertyId_TokenId))
+}
