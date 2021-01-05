@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React,{ useEffect, useState } from 'react'
 import { useStore } from '../context/GlobalState';
 import Loader from '../images/loader.gif'
 import OfferAccepting from './OfferActions/OfferAccept';
 import OfferRejecting from './OfferActions/OfferReject';
+
 function OfferStatus({ PropertyId_TokenId }) {
 
     const [{ contract, accounts }, dispatch] = useStore();
     const [Data, setData] = useState([])
-    const [Address, setAddress] = useState("")
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
     const [isTransactionSuccessful, setTransactionSuccessful] = useState(true)
     const [transactionError, setTransactionError] = useState("")

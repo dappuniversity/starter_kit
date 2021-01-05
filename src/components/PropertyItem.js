@@ -4,8 +4,10 @@ import { useStore } from '../context/GlobalState'
 import { property_Detail } from "../store/asyncActions";
 import { useParams } from 'react-router-dom'
 import Web3 from 'web3'
-import BuyerRequest from './BuyerRequest';
+//import BuyerRequest from './BuyerRequest';
 import  OfferStatus  from './OfferStatus';
+import { Buyer } from './Buyer';
+import BuyerRequest from './BuyerRequest';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -88,7 +90,7 @@ function PropertyItem() {
                         <h3>Price: {Web3.utils.fromWei(dataItem[7].toString(), 'Ether')} Eth</h3>
 
                     </div>
-                    {dataItem[0] === accounts[0] ? <OfferStatus PropertyId_TokenId={dataItem[1]} /> : <BuyerRequest PropertyId_TokenId={dataItem[1]} />  }
+                    {dataItem[0] === accounts[0] ? <OfferStatus PropertyId_TokenId={dataItem[1]} /> : <Buyer PropertyId_TokenId={dataItem[1]} BuyerAddress={dataItem[0]}   />  }
                  
                     </div>
                 } catch (error) {

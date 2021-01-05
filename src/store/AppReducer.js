@@ -27,7 +27,7 @@ export default (state, action) => {
         case 'ENABLE_PROPERTY_SALE':
             return {
                 ...state,
-                tokenId: [action.payload, ...state.tokenId]
+                tokenId: action.payload
             }
         case 'PROPERTY_PRICING':
             return {
