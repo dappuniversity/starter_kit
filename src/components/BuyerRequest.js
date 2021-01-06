@@ -12,7 +12,6 @@ function BuyerRequest({ PropertyId_TokenId }) {
     const [transactionError, setTransactionError] = useState("")
 
     const [value, setvalue] = useState(0)
-    
     const onSubmit = async (e) => {
         e.preventDefault();
         setTransactionSuccessful(true)
@@ -23,9 +22,9 @@ function BuyerRequest({ PropertyId_TokenId }) {
                 PropertyId_TokenId,
                 value
             }
-
-            await buyer_Request(contract, accounts, newOffer, dispatch);
-            console.log(newOffer)
+//: Web3.utils.fromWei(value.toString(), 'Ether')
+           const result = await buyer_Request(contract, accounts, newOffer, dispatch);
+            console.log(result)
             setTransactionInProcess(false)
             setTransactionSuccessful(true)
             
@@ -52,7 +51,6 @@ function BuyerRequest({ PropertyId_TokenId }) {
             </div>
         </form>
     </div>
-
 }
 
 export default BuyerRequest;

@@ -6,7 +6,7 @@ import { BuyProperty } from './BuyProperty';
 // import BuyerRequest from './BuyerRequest'
 
 
-export const Buyer = ({ PropertyId_TokenId, BuyerAddress }) => {
+export const Buyer = ({ PropertyId_TokenId,OwnerAddress }) => {
 
     const [{ contract, accounts }, dispatch] = useStore();
     const [isTransactionInProcess, setTransactionInProcess] = useState(false)
@@ -15,8 +15,9 @@ export const Buyer = ({ PropertyId_TokenId, BuyerAddress }) => {
 
     // const [response, setResponse] = useState([])
     const [Data, setData] = useState([])
-
-    const getOffers = async () => await contract.methods.BuyerList(BuyerAddress).call().then(function (result, error) {
+    // console.log(typeof(BuyerAddress), PropertyId_TokenId)
+    // const BuyerAddress = accounts[0]
+    const getOffers = async () => await contract.methods.BuyerList(accounts[0]).call().then(function (result, error) {
         if (result) {
             setData({ Data: result })
         } else if (error) {
@@ -35,7 +36,7 @@ export const Buyer = ({ PropertyId_TokenId, BuyerAddress }) => {
     const getResponse = () => {
         Object.values(Data).map((item, index) => {
 
-            // console.log(typeof (item), item)
+            console.log(typeof (item), item)
             for (var a in item) {
                 states = item
                 return item[a]
@@ -45,14 +46,15 @@ export const Buyer = ({ PropertyId_TokenId, BuyerAddress }) => {
 
     const r = getResponse()
     const response = states[3]
-    // console.log(response)
+    const val = states[2]
+    const BuyerAddress =states[1]
+    console.log(response,val)
 
     return (
         <>
             {
-                response == "1" ? <BuyProperty PropertyId_TokenId={PropertyId_TokenId} /> : <BuyerRequest PropertyId_TokenId={PropertyId_TokenId} />
+                response == "1" ? <BuyProperty PropertyId_TokenId={PropertyId_TokenId} val={val} OwnerAddress={OwnerAddress} /> : <BuyerRequest PropertyId_TokenId={PropertyId_TokenId} />
             }
-            
         </>
     )
 }

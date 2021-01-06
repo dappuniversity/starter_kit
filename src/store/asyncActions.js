@@ -12,7 +12,7 @@ export const loadBlockchain = async (dispatch) => {
             await Web3.givenProvider.enable();
             dispatch(setupWeb3(web3));
             //       0xF10F322bf589b873B4C53bEef0ca644D32730b79
-            const address = "0xABc3955C6075B790D42e769610d6a3bfD5bfC9ec"
+            const address = "0x389Af8Ba142C632470517b44299A1B0F17440789"
             const contract = new web3.eth.Contract(SmartEstate.abi, address)
             dispatch(setupContract(contract));
             console.log(contract)

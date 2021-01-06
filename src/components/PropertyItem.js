@@ -90,7 +90,7 @@ function PropertyItem() {
                         <h3>Price: {Web3.utils.fromWei(dataItem[7].toString(), 'Ether')} Eth</h3>
 
                     </div>
-                    {dataItem[0] === accounts[0] ? <OfferStatus PropertyId_TokenId={dataItem[1]} /> : <Buyer PropertyId_TokenId={dataItem[1]} BuyerAddress={dataItem[0]}   />  }
+                    {dataItem[0] === accounts[0] ? <OfferStatus PropertyId_TokenId={dataItem[1]} /> : <Buyer PropertyId_TokenId={dataItem[1]} OwnerAddress={dataItem[0]}   />  }
                  
                     </div>
                 } catch (error) {

@@ -153,6 +153,7 @@ contract SmartEstate is ERC721 {
 
     function OfferStatus(uint256 PropertyId_TokenId)
         public
+        propertyOwner
         returns (BuyerInfo[] memory)
     {
         require(
