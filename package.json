@@ -1,8 +1,8 @@
 {
   "name": "eth-marketplace",
   "version": "0.1.0",
-  "description": "An Ethereum Marketplace",
-  "author": "gregory@dappuniversity.com",
+  "description": "A Food Marketplace",
+  "author": "jordan.lugenbeel@gmail.com",
   "dependencies": {
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.7.0",
