@@ -1,0 +1,20 @@
+@import "styles/variables.scss";
+
+.Header {
+  background: transparent;
+
+  .Title {
+    color: $accent-color;
+    text-shadow: 0 0 1px $accent-color, 0 0 1px $accent-color,
+      0 0 1px $accent-color, 0 0 10px $accent-color, 0 0 1px $accent-color,
+      0 0 10px $accent-color, 0 0 1px $accent-color, 0 0 1px $accent-color;
+  }
+
+  .LoginButton {
+    background: transparent;
+    border-color: orange;
+    box-shadow: 0 0 0.1rem #fff, 0 0 0.1rem #fff, 0 0 0.2rem $accent-color,
+      0 0 0.2rem $accent-color, 0 0 0.2rem $accent-color,
+      inset 0 0 0.1rem $accent-color;
+  }
+}

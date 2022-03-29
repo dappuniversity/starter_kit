@@ -1,0 +1,126 @@
+/* Screen size breakpoints*/
+$max-width-xs: 576px;
+$max-width-sm: 768px;
+$max-width-md: 992px;
+$max-width-lg: 1200px;
+$max-width-xl: 1400px;
+
+@mixin xs {
+  @media (max-width: $max-width-xs) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: $max-width-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: $max-width-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: $max-width-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: $max-width-xl) {
+    @content;
+  }
+}
+
+@mixin card {
+  background: linear-gradient(24deg, #0f373f 15%, #040e10 58%);
+}
+
+@mixin scrollShadows($background-color) {
+  overflow: auto;
+  background: linear-gradient($background-color 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), $background-color 70%) 0 100%,
+    radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+    radial-gradient(
+        50% 100%,
+        farthest-side,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
+  background: linear-gradient($background-color 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(rgba(255, 255, 255, 0), $background-color 70%) 0 100%,
+    radial-gradient(
+      farthest-side at 50% 0,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
+  background-repeat: no-repeat;
+  background-color: $background-color;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin ellipsisOnRows($numRows: 1) {
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $numRows;
+  -webkit-box-orient: vertical;
+}
+
+@mixin focus() {
+  &:hover {
+    transition: 0.6s;
+    transform: scale(1.01);
+  }
+}
+
+@mixin sectionTitle() {
+  margin-bottom: 14px;
+
+  & > div {
+    display: inline;
+    width: fit-content;
+    font-size: 34px;
+    font-weight: bold;
+    font-family: "Blessed light";
+
+    @include xs {
+      font-size: 28px;
+    }
+
+    &:last-of-type {
+      font-size: 54px;
+      line-height: 0.9;
+
+      @include xs {
+        font-size: 38px;
+      }
+    }
+
+    &:first-of-type {
+      font-size: 34px;
+
+      @include xs {
+        font-size: 28px;
+      }
+    }
+  }
+}

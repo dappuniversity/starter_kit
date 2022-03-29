@@ -1,0 +1,367 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.HowItWorksCard {
+  position: relative;
+  width: 400px;
+  padding-top: 60px;
+  background: linear-gradient(-24deg, #081c20 10%, rgba(1, 9, 10, 0.9) 90%);
+  @include focus;
+
+  .Title {
+    @include sectionTitle;
+    margin-bottom: 4px;
+  }
+
+  .Step {
+    flex-wrap: nowrap;
+  }
+
+  .LinkButtonAccent:hover {
+    color: $accent-color;
+  }
+
+  .LinkButtonPrimary:hover {
+    color: $primary-color;
+  }
+
+  .BreadShape {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    text-align: center;
+    padding: 12px;
+    transform: skew(0deg, -6deg);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 40%;
+      width: 35%;
+      background: #081c20;
+      border-radius: 4rem 2rem 0 3rem;
+      border-top: 0.05rem solid white;
+      border-left: 0.05rem solid white;
+      border-bottom: 0.05rem solid white;
+      box-shadow: -0.05rem 0 0.02rem #fff, -0.05rem 0 0.02rem #fff,
+        -0.25rem 0.15rem 0.2rem $accent-color,
+        inset 0.2rem 0 0.2rem -0.2rem white,
+        inset 2rem 0 1rem -2.25rem $accent-color;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 14%;
+      height: 40%;
+      width: 55%;
+      background: #081c20;
+      border-radius: 3rem 6rem 3rem 0;
+      border-top: 0.1rem solid white;
+      border-right: 0.1rem solid white;
+      border-bottom: 0.1rem solid white;
+      box-shadow: 0.1rem 0 0.05rem #fff, 0.1rem 0 0.05rem #fff,
+        0.25rem 0.15rem 0.2rem $accent-color,
+        inset -0.2rem 0.2rem 0.2rem -0.2rem white,
+        inset -2rem 0 1.5rem -2.25rem $accent-color;
+      z-index: 1;
+    }
+
+    & > div:first-of-type {
+      position: absolute;
+      top: 35%;
+      left: 7%;
+      height: 55%;
+      width: 75%;
+      background: #081c20;
+      border-radius: 0.5rem 0.5rem 1rem 1rem;
+      border-right: 0.1rem solid white;
+      border-bottom: 0.1rem solid white;
+      box-shadow: 0 0.1rem 0.05rem #fff, 0 0.1rem 0.05rem #fff,
+        0 0.3rem 0.25rem 0 $accent-color,
+        inset -0.2rem -0.2rem 0.2rem -0.2rem white,
+        inset -2rem -1.5rem 1.5rem -2.25rem $accent-color,
+        inset 0.2rem -0.2rem 0.2rem -0.2rem white,
+        inset 2rem -1.5rem 1rem -2.25rem $accent-color;
+      z-index: 2;
+    }
+
+    & > div:last-of-type {
+      position: relative;
+      top: 15%;
+      left: 10%;
+      height: 80%;
+      width: 80%;
+      border-radius: 20% 20% 0 0;
+      box-shadow: 0rem 0rem 4rem 0.5rem $accent-color;
+      z-index: -1;
+      transform: inherit;
+    }
+  }
+
+  .CrumbsShape {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    text-align: center;
+    padding: 12px;
+    transform: skew(0deg, -6deg);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 30%;
+      left: 35%;
+      height: 20%;
+      width: 20%;
+      background: #081c20;
+      border-radius: 50%;
+      border-top: 0.05rem solid white;
+      border-right: 0.05rem solid white;
+      border-bottom: 0.05rem solid white;
+      box-shadow: 0.05rem -0.05rem 0.02rem #fff, 0.05rem -0.05rem 0.02rem #fff,
+        0.05rem -0.05rem 0.1rem $primary-color,
+        inset -0.25rem 0.25rem 0.2rem -0.2rem white,
+        inset -1.8rem 1.5rem 1rem -2.25rem $primary-color;
+      z-index: 0;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 35%;
+      left: 45%;
+      height: 25%;
+      width: 25%;
+      background: #081c20;
+      border-radius: 50%;
+      border-top: 0.05rem solid white;
+      border-right: 0.05rem solid white;
+      border-bottom: 0.05rem solid white;
+      box-shadow: 0.05rem -0.05rem 0.02rem #fff, 0.05rem -0.05rem 0.02rem #fff,
+        0.05rem -0.05rem 0.1rem $primary-color,
+        inset -0.25rem 0.25rem 0.2rem -0.2rem white,
+        inset -1.8rem 1.5rem 1rem -2.25rem $primary-color;
+      z-index: -1;
+    }
+
+    & > div:first-of-type {
+      position: absolute;
+      top: 43%;
+      left: 40%;
+      height: 20%;
+      width: 20%;
+      background: #081c20;
+      border-radius: 50%;
+      border-top: 0.05rem solid white;
+      border-right: 0.05rem solid white;
+      border-bottom: 0.05rem solid white;
+      box-shadow: 0.05rem -0.05rem 0.02rem #fff, 0.05rem -0.05rem 0.02rem #fff,
+        0.05rem -0.05rem 0.1rem $primary-color,
+        inset -0.25rem 0.25rem 0.2rem -0.2rem white,
+        inset -1.8rem 1.5rem 1rem -2.25rem $primary-color;
+      z-index: 1;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 10%;
+        left: -80%;
+        height: 100%;
+        width: 100%;
+        background: #081c20;
+        border-radius: 50%;
+        border-top: 0.05rem solid white;
+        border-right: 0.05rem solid white;
+        border-bottom: 0.05rem solid white;
+        box-shadow: 0.05rem -0.05rem 0.02rem #fff, 0.05rem -0.05rem 0.02rem #fff,
+          0.05rem -0.05rem 0.1rem $primary-color,
+          inset -0.25rem 0.25rem 0.2rem -0.2rem white,
+          inset -1.8rem 1.5rem 1rem -2.25rem $primary-color;
+        z-index: -1;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        top: 40%;
+        left: 125%;
+        height: 75%;
+        width: 75%;
+        background: #081c20;
+        border-radius: 50%;
+        border-top: 0.05rem solid white;
+        border-right: 0.05rem solid white;
+        border-bottom: 0.05rem solid white;
+        box-shadow: 0.05rem -0.05rem 0.02rem #fff, 0.05rem -0.05rem 0.02rem #fff,
+          0.05rem -0.05rem 0.1rem $primary-color,
+          inset -0.25rem 0.25rem 0.2rem -0.2rem white,
+          inset -1.8rem 1.5rem 1rem -2.25rem $primary-color;
+        z-index: -4;
+      }
+
+      & > div:first-of-type {
+        position: absolute;
+        top: 135%;
+        left: 7%;
+        height: 55%;
+        width: 75%;
+        height: 20%;
+        width: 20%;
+        background: #081c20;
+        border-radius: 50%;
+        border-top: 0.05rem solid white;
+        border-right: 0.05rem solid white;
+        border-bottom: 0.05rem solid white;
+        box-shadow: 0.05rem -0.05rem 0.02rem #fff, 0.05rem -0.05rem 0.02rem #fff,
+          0.05rem -0.05rem 0.1rem $primary-color,
+          inset -0.25rem 0.25rem 0.2rem -0.2rem white,
+          inset -1.8rem 1.5rem 1rem -2.25rem $primary-color;
+        z-index: 4;
+      }
+    }
+
+    & > div:last-of-type {
+      position: relative;
+      top: 30%;
+      left: 30%;
+      height: 35%;
+      width: 40%;
+      border-radius: 50%;
+      box-shadow: 0rem 0rem 4rem 0.7rem $primary-color;
+      z-index: -4;
+      transform: inherit;
+    }
+  }
+
+  .CommunityShape {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 85px;
+    height: 75px;
+    background: transparent;
+    text-align: center;
+    padding: 12px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 30%;
+      height: 40%;
+      width: 40%;
+      background: #081c20;
+      border-radius: 50%;
+      border-top: 0.05rem solid white;
+      border-right: 0.05rem solid white;
+      box-shadow: 0 -0.05rem 0.02rem #fff, 0 -0.05rem 0.02rem #fff,
+        0.05rem -0.15rem 0.1rem white, inset 0 0.2rem 0.2rem -0.2rem white,
+        inset 0 2rem 1rem -2.25rem white;
+      z-index: 2;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      height: 70%;
+      width: 55%;
+      background: #081c20;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      border-left: 0.1rem solid white;
+      border-right: 0.1rem solid white;
+      border-bottom: 0.1rem solid white;
+      box-shadow: 0 0.1rem 0.05rem #fff, 0 0.1rem 0.05rem #fff,
+        0 0.3rem 0.25rem 0 white, inset -0.2rem -0.2rem 0.2rem -0.2rem white,
+        inset -2rem -1.5rem 1.5rem -2.25rem white,
+        inset 0.2rem -0.2rem 0.2rem -0.2rem white,
+        inset 2rem -1.5rem 1rem -2.25rem white;
+      z-index: 1;
+    }
+
+    & > div:first-of-type {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      width: 90%;
+      height: 90%;
+      background: transparent;
+      text-align: center;
+      padding: 12px;
+      z-index: 3;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 30%;
+        height: 40%;
+        width: 40%;
+        background: #081c20;
+        border-radius: 50%;
+        border-top: 0.05rem solid white;
+        border-right: 0.05rem solid white;
+        box-shadow: 0 -0.05rem 0.02rem #fff, 0 -0.05rem 0.02rem #fff,
+          0.05rem -0.15rem 0.1rem white, inset 0 0.2rem 0.2rem -0.2rem white,
+          inset 0 2rem 1rem -2.25rem white;
+        z-index: 2;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 25%;
+        height: 70%;
+        width: 55%;
+        background: #081c20;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        border-left: 0.1rem solid white;
+        border-right: 0.1rem solid white;
+        border-bottom: 0.1rem solid white;
+        box-shadow: 0 0.1rem 0.05rem #fff, 0 0.1rem 0.05rem #fff,
+          0 0.3rem 0.25rem 0 white, inset -0.2rem -0.2rem 0.2rem -0.2rem white,
+          inset -2rem -1.5rem 1.5rem -2.25rem white,
+          inset 0.2rem -0.2rem 0.2rem -0.2rem white,
+          inset 2rem -1.5rem 1rem -2.25rem white;
+        z-index: 1;
+      }
+
+      & > div:first-of-type {
+        position: absolute;
+        top: 135%;
+        left: 7%;
+        height: 55%;
+        width: 75%;
+        background: #081c20;
+        border-radius: 0.5rem 0.5rem 1rem 1rem;
+        border-right: 0.1rem solid white;
+        border-bottom: 0.1rem solid white;
+        box-shadow: 0 0.1rem 0.05rem #fff, 0 0.1rem 0.05rem #fff,
+          0 0.3rem 0.25rem 0 white, inset -0.2rem -0.2rem 0.2rem -0.2rem white,
+          inset -2rem -1.5rem 1.5rem -2.25rem white,
+          inset 0.2rem -0.2rem 0.2rem -0.2rem white,
+          inset 2rem -1.5rem 1rem -2.25rem white;
+        z-index: 1;
+      }
+    }
+
+    & > div:last-of-type {
+      position: relative;
+      top: 25%;
+      left: 25%;
+      height: 80%;
+      width: 45%;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      box-shadow: 0rem 0rem 4rem 0.6rem white;
+      z-index: 0;
+      transform: inherit;
+    }
+  }
+}

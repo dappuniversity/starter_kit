@@ -1,0 +1,87 @@
+version: '3.6'
+
+services:
+  ganache:
+    container_name: local-ganache
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/ganache/Dockerfile
+    ports:
+      - 8545:8545
+
+  truffle:
+    container_name: local-truffle
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/truffle/Dockerfile
+    healthcheck:
+      test: curl -sf -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' ganache:8545
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    tty: true
+    volumes:
+      - abis-volume:/backend/abis
+    depends_on:
+      - ganache
+    
+  truffle-test:
+    container_name: local-truffle-test
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/truffle/Dockerfile
+    healthcheck:
+      test: curl -sf -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' ganache:8545
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    entrypoint: ./truffle-test.sh
+    depends_on:
+      - ganache
+
+  postgres:
+    image: postgres:10.6-alpine
+    container_name: local-postgres
+    env_file:
+      - ../../../.env.local
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: local-pgadmin
+    env_file:
+      - ../../../.env.local
+    depends_on:
+      - postgres
+    ports:
+      - 5500:80
+
+  frontend:
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/frontend/Dockerfile
+      target: development
+    container_name: frontend
+    env_file:
+      - ../../../.env.local
+    volumes:
+      - ${PWD}/frontend:/frontend
+      - ${PWD}/prisma:/prisma
+      - abis-volume:/backend/abis
+      - ${PWD}/logs/local/frontend:/logs/
+    depends_on:
+      - postgres
+      - pgadmin
+      - ganache
+      - truffle
+    ports: 
+      - 3000:3000
+
+volumes:
+  postgres-volume:
+  abis-volume:
+  prisma-volume:

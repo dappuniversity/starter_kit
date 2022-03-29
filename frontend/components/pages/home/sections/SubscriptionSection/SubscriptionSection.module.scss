@@ -1,0 +1,67 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.SubscriptionSection {
+  padding: 0px 400px;
+
+  @include lg {
+    padding: 0px 100px;
+  }
+
+  @include sm {
+    padding: 0px 40px;
+  }
+
+  @include xs {
+    padding: 0px 20px;
+  }
+
+  .Border {
+    position: relative;
+    height: 3px;
+    border-radius: 50%;
+    width: 100%;
+    background-color: $reverse-color;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 0.5px;
+      border-radius: 50%;
+      box-shadow: 0 0rem 1rem 0.5rem $primary-color;
+      z-index: -1;
+    }
+  }
+
+  .Content {
+    padding: 40px 40px;
+    border-radius: 14px;
+    background-image: linear-gradient(
+      90deg,
+      #040e1000 100%,
+      red 20%,
+      #040e10cc 80%,
+      #040e1000 100%
+    );
+
+    .Title {
+      @include sectionTitle;
+      text-shadow: 0 0 5px $dark-color;
+    }
+
+    .Subtitle {
+      display: block;
+      font-size: 20px;
+      font-weight: 900;
+      text-align: left;
+      text-shadow: 0 0 5px $dark-color;
+
+      @include xs {
+        font-size: 16px;
+      }
+    }
+  }
+}

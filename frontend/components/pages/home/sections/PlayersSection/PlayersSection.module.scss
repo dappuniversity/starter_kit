@@ -1,0 +1,102 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.PlayersSection {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 200px;
+  gap: 20px;
+
+  @include lg {
+    padding: 0px 100px;
+  }
+
+  @include sm {
+    padding: 0px 40px;
+  }
+
+  @include xs {
+    padding: 0px 20px;
+  }
+
+  .PlayersCard {
+    border-radius: 14px;
+    padding: 80px;
+    min-height: 440px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: 0.6s;
+
+    &.PickersCard {
+      flex: 1 0 calc(50% - 20px);
+      background-color: $primary-color;
+      box-shadow: 0 0 0.2rem 0.1rem $primary-color;
+
+      &:hover {
+        box-shadow: 0 0 1rem 0.5rem $primary-color;
+      }
+
+      .LinkButton {
+        color: $primary-color;
+      }
+    }
+
+    &.BakersCard {
+      flex: 1 0 calc(50% - 20px);
+      background-color: $accent-color;
+      box-shadow: 0 0 0.2rem 0.1rem $accent-color;
+
+      &:hover {
+        box-shadow: 0 0 1rem 0.5rem $accent-color;
+      }
+
+      .LinkButton {
+        color: $accent-color;
+      }
+    }
+
+    &.InvestorsCard {
+      flex: 1 0 100%;
+      background-color: $reverse-color;
+      box-shadow: 0 0 0.2rem 0.1rem $reverse-color;
+
+      &:hover {
+        box-shadow: 0 0 1rem 0.5rem $reverse-color;
+      }
+
+      .LinkButton {
+        color: $reverse-color;
+
+        &:hover {
+          color: $reverse-color;
+        }
+      }
+    }
+
+    .Title {
+      @include sectionTitle;
+      color: $dark-color;
+    }
+
+    .Subtitle {
+      color: $dark-color;
+      font-size: 20px;
+      flex: 1;
+    }
+
+    .LinkButton {
+      margin-left: auto;
+      width: fit-content;
+      border-radius: 16px;
+      padding: 16px;
+      height: 50px;
+      background-color: $dark-color;
+
+      &:hover {
+        @include focus;
+        background-color: (#{$dark-color}DD);
+      }
+    }
+  }
+}

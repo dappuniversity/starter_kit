@@ -1,0 +1,41 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.Payment {
+  width: 100%;
+
+  .Chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    .Divider {
+      position: relative;
+      padding-left: 10px;
+      margin-left: 12px;
+      flex: 1 0 30%;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 6px;
+        left: -8px;
+        width: 0;
+        height: 0;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-right: 12px solid $primary-color;
+        border-radius: 2px;
+      }
+    }
+
+    .Negative::after {
+      border-right: 8px solid $reverse-color;
+    }
+  }
+
+  span {
+    @include ellipsis;
+  }
+}

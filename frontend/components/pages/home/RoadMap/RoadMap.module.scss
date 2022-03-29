@@ -1,0 +1,86 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.RoadMap {
+  background: transparent;
+
+  .Target {
+    @include sectionTitle;
+  }
+
+  .TimeLine {
+    :global(.mantine-Timeline-item) {
+      &:before {
+        border-left: 0.05rem solid white;
+        box-shadow: 0.05rem 0rem 0.2rem $primary-color,
+          0.02rem 0rem 0.2rem $primary-color, 0.02rem 0rem 0.2rem $primary-color;
+        border-left: 1px solid white;
+        background-color: white;
+      }
+
+      :global(.mantine-Timeline-itemBullet) {
+        border-width: 0.1rem;
+        border-style: solid;
+        border-color: white;
+        background-color: white;
+        // background: linear-gradient(24deg, #0f373f 15%, #040e10 58%);
+
+        @include focus;
+
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          box-shadow: 0 0 0.1rem #fff, 0 0 0.1rem #fff,
+            0.05rem -0.05rem 2rem $primary-color,
+            0.05rem -0.05rem 0.5rem $primary-color,
+            0.05rem -0.05rem 0.5rem $primary-color;
+          z-index: -1;
+        }
+
+        div {
+          width: 105%;
+          height: 105%;
+        }
+      }
+
+      :global(.mantine-Timeline-itemBody) > div:first-of-type {
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .Feature > div:first-of-type {
+        width: 20px;
+        height: 20px;
+      }
+
+      .Feature > div:last-of-type {
+        margin-left: 5px;
+        display: inline;
+      }
+    }
+  }
+
+  &.Accent {
+    .TimeLine {
+      :global(.mantine-Timeline-item) {
+        &:before {
+          box-shadow: 0.05rem 0rem 0.2rem $accent-color,
+            0.02rem 0rem 0.2rem $accent-color, 0.02rem 0rem 0.2rem $accent-color;
+        }
+
+        :global(.mantine-Timeline-itemBullet) {
+          &:before {
+            box-shadow: 0 0 0.1rem #fff, 0 0 0.1rem #fff,
+              0.05rem -0.05rem 2rem $accent-color,
+              0.05rem -0.05rem 0.5rem $accent-color,
+              0.05rem -0.05rem 0.5rem $accent-color;
+          }
+        }
+      }
+    }
+  }
+}

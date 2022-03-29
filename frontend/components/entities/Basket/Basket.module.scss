@@ -1,0 +1,32 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.Basket {
+  height: 100%;
+
+  & > div {
+    height: 100%;
+
+    /*
+    box-shadow: 0 0 0.1rem #fff, 0 0 0.1rem #fff, 0 0 1rem $primary-color,
+      0 0 1.4rem $primary-color, 0 0 1.4rem $primary-color,
+      inset 0 0 1rem $primary-color;
+      */
+
+    border-bottom: 0.1rem solid white;
+    box-shadow: 0 1rem 3rem -1.5rem $primary-color,
+      inset 0px -3rem 2rem -3rem $primary-color;
+    background: linear-gradient(24deg, #0f373f 15%, #040e10 58%);
+  }
+
+  .Title {
+    @include ellipsis;
+  }
+
+  span {
+    @include ellipsis;
+  }
+
+  .LinkButton {
+  }
+}

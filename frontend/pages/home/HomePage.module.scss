@@ -1,0 +1,65 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.HomePage {
+  > span {
+    z-index: -10;
+    pointer-events: none;
+
+    .BackgroundImage {
+      position: fixed !important;
+      z-index: -10;
+      pointer-events: none;
+      filter: contrast(1.1);
+    }
+  }
+
+  .HeaderSection {
+  }
+
+  .BannerSection,
+  .WhatIsSection,
+  .AdvantagesSection,
+  .PlayersSection,
+  .SubscriptionSection {
+    margin: 400px auto;
+  }
+
+  .ExampleSection {
+    margin: 400px auto 0px auto;
+  }
+
+  .HowItWorksSection {
+    margin: 0px auto 400px auto;
+  }
+
+  .RoadMapSection {
+    margin: 400px auto;
+    opacity: 0;
+    transition: all 1.5s ease-in-out;
+
+    &.RoadMapEffect {
+      opacity: 1;
+    }
+  }
+
+  .PartnersSection {
+    margin: 400px auto;
+    min-height: 0.1px;
+    background: rgba(1, 9, 10, 0.95);
+    border-radius: 100%;
+    box-shadow: 0 0 20rem 20rem rgba(1, 9, 10, 0.95);
+    margin: 600px auto;
+    border: 0;
+    border-color: rgba(1, 9, 10, 0.9);
+    flex-direction: row-reverse;
+    transform: translateY(200px);
+    opacity: 0;
+    transition: all 1.5s ease-in-out;
+
+    &.PartnersEffect {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+}

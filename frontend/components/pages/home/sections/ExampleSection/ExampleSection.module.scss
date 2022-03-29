@@ -1,0 +1,36 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.ExampleSection {
+  padding: 0px 200px;
+  box-shadow: 0 0 5rem 5rem rgba(1, 9, 10, 0.75);
+  background: rgba(1, 9, 10, 0.75);
+  @include focus;
+
+  @include lg {
+    padding: 20px;
+  }
+
+  .Title {
+    text-align: center;
+  }
+
+  .Description {
+    text-align: center;
+  }
+
+  .Example {
+    margin-top: 40px;
+    padding: 40px 0px;
+    text-align: center;
+
+    & > div {
+      width: fit-content;
+      font-size: 24px;
+      display: inline;
+    }
+  }
+
+  .Crumb {
+  }
+}

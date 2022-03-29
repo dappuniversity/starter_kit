@@ -1,0 +1,74 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+@keyframes rotate {
+  0% {
+    stroke-dashoffset: 1200;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.HeaderSection {
+  min-height: 100vh;
+  padding: 40px;
+  box-shadow: 0 0 25rem 25rem rgba(1, 9, 10, 0.25);
+  background: rgba(1, 9, 10, 0.25);
+
+  @include md {
+    padding: 20px;
+  }
+
+  .Path {
+    position: fixed;
+    top: 720px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    stroke-dasharray: 300 300;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+
+    filter: drop-shadow(0 0 2px white) drop-shadow(0 0 5px $primary-color)
+      drop-shadow(0 0 10px $primary-color) drop-shadow(0 0 20px $primary-color);
+    animation: rotate 20s infinite linear;
+  }
+
+  .HiddenEffect {
+    opacity: 0;
+  }
+
+  .Content {
+    margin: 40px;
+    padding: 20px;
+    font-family: "Blessed Light";
+    text-align: center;
+
+    .Title {
+      display: inline-block;
+      font-size: 58px;
+      font-weight: bold;
+      text-shadow: 0 0 20px $primary-color;
+    }
+
+    .Space {
+    }
+
+    .Subtitle {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+
+      span {
+        font-size: 32px;
+        font-weight: bold;
+        text-shadow: 0 0 15px $dark-color;
+
+        &:nth-of-type(even) {
+          color: $accent-color;
+          text-shadow: 0 0 10px $accent-color;
+        }
+      }
+    }
+  }
+}

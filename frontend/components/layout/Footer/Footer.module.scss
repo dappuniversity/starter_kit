@@ -1,0 +1,59 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.Footer {
+  position: relative;
+  min-height: 360px;
+  background: #040e10;
+  border-radius: 50% / 15%;
+  color: white;
+  text-align: center;
+  text-indent: 0.1em;
+  border-top: 0.3rem solid white;
+  box-shadow: 0 0 0.1rem #fff, 0 0 0.1rem #fff, 0 0 4rem $primary-color,
+    0 0 1rem $primary-color, 0 0 1rem $primary-color,
+    inset 0 0.4rem 0.4rem -0.4rem white, inset 0 3rem 4rem -4rem $primary-color;
+  padding: 100px;
+  margin-top: 40px;
+
+  @include md {
+    border-radius: 50% / 5%;
+    padding: 80px 20px;
+  }
+
+  @include xs {
+    border-radius: 50% / 3%;
+    padding: 40px 0px;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    height: 120px;
+    width: 100%;
+    background: #040e10;
+    z-index: 1;
+
+    @include md {
+      height: 100px;
+    }
+
+    @include xs {
+      height: 80px;
+    }
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .Logo {
+    height: 1em;
+    margin-left: 0.5rem;
+  }
+}

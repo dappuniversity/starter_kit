@@ -1,0 +1,17 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.EmailForm {
+  .Error {
+    text-shadow: 0 0 15px $dark-color;
+  }
+
+  .Button {
+    background: transparent;
+    border-color: $primary-color;
+    box-shadow: 0 0 0.1rem #fff, 0 0 0.1rem #fff, 0 0 0.2rem $primary-color,
+      0 0 0.2rem $primary-color, 0 0 0.2rem $primary-color,
+      inset 0 0 0.1rem $primary-color;
+    @include focus;
+  }
+}

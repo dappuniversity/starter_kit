@@ -1,0 +1,118 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.HowItWorksSection {
+  position: relative;
+  width: 100%;
+  height: 0px;
+  padding-top: 100%;
+
+  @include md {
+    min-height: 2000px;
+  }
+
+  .HowItWorksCard {
+    box-shadow: 0 0 4rem 2rem rgba(1, 9, 10, 0.95);
+
+    @include md {
+      box-shadow: 0 0 2rem 0.7rem rgba(1, 9, 10, 0.95);
+      min-width: 70%;
+      max-width: 85%;
+    }
+
+    &:first-of-type {
+      position: absolute;
+      top: 15%;
+      left: 18%;
+
+      @include xl {
+        top: 2%;
+        left: 10%;
+      }
+
+      @include md {
+        top: 15%;
+        left: 5%;
+      }
+    }
+
+    &:nth-of-type(2) {
+      position: absolute;
+      top: 30%;
+      right: 15%;
+
+      @include xl {
+        top: 25%;
+        right: 5%;
+      }
+
+      @include md {
+        top: 45%;
+        right: 5%;
+      }
+    }
+
+    &:nth-of-type(3) {
+      position: absolute;
+      bottom: 15%;
+      left: 23%;
+
+      @include xl {
+        bottom: 5%;
+        left: 15%;
+      }
+
+      @include md {
+        bottom: 2%;
+        left: 5%;
+      }
+    }
+  }
+
+  .Circle {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    border-bottom: 0.1rem solid white;
+    border-right: 0.8rem solid white;
+    border-left: 0.1rem solid white;
+    box-shadow: 0 0.05rem 0.1rem #fff, 0 0.05rem 0.1rem #fff,
+      0 0.05rem 1rem $primary-color, 0 0.5rem 1rem $primary-color,
+      0 0.5rem 2rem $primary-color, inset 0 0 0.2rem white,
+      inset 0 0 1rem $primary-color, inset 0 0 1rem $primary-color;
+    padding: 120px;
+    z-index: -1;
+
+    animation: rotation 6s infinite linear;
+
+    @include md {
+      width: 2000px;
+      height: 2000px;
+      left: -175%;
+    }
+
+    @include sm {
+      width: 2000px;
+      height: 2000px;
+      left: -225%;
+    }
+
+    @include xs {
+      width: 1600px;
+      height: 1600px;
+      left: -250%;
+    }
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

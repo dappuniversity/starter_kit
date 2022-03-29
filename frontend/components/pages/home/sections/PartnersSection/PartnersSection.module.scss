@@ -1,0 +1,27 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.PartnersSection {
+  position: relative;
+  width: 100%;
+
+  .Slider {
+    position: absolute;
+    transform: translate(0, -75%);
+
+    .PartnerImage {
+      -webkit-filter: drop-shadow(0 0 0.3rem);
+      filter: drop-shadow(0 0 0.3rem);
+    }
+  }
+
+  @include md {
+    border-radius: 50% / 5%;
+    padding: 80px 00px;
+  }
+
+  @include xs {
+    border-radius: 50% / 3%;
+    padding: 40px 0px;
+  }
+}

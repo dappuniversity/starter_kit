@@ -1,0 +1,11 @@
+$accent-color: #ffa94d;
+$primary-color: #22b8cf;
+$dark-color: #020708;
+$reverse-color: #ffffff;
+
+:export {
+  primaryColor: $primary-color;
+  accentColor: $accent-color;
+  darkColor: $dark-color;
+  reverseColor: $reverse-color;
+}

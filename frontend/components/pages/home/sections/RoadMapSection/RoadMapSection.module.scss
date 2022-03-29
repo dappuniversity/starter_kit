@@ -1,0 +1,22 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.RoadMapSection {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 200px;
+  justify-content: center;
+  border-radius: 100%;
+  box-shadow: 0 0 20rem 20rem rgba(1, 9, 10, 0.35);
+  background: rgba(1, 9, 10, 0.35);
+  gap: 40px;
+
+  @include sm {
+    padding: 20px;
+  }
+
+  .RoadMap {
+    flex: 1 0 400px;
+    @include focus;
+  }
+}

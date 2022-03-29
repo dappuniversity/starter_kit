@@ -1,0 +1,25 @@
+.BasketPage {
+  padding: 24px;
+
+  .Content {
+    display: flex;
+    gap: 48px;
+
+    .Basket {
+      position: relative;
+      flex: 1 0 300px;
+
+      .BasketData {
+        position: relative;
+
+        & > div {
+          width: 100%;
+        }
+      }
+    }
+
+    .Crumbs {
+      flex: 1 0 680px;
+    }
+  }
+}

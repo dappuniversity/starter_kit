@@ -1,0 +1,177 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.BannerSection {
+  position: relative;
+  min-height: 400px;
+  background-color: (#{$dark-color}DF);
+  background: linear-gradient(25deg, #{$dark-color}DF 45%, #081c20cc 90%);
+  border-top: 0.1rem solid white;
+  box-shadow: 0 -1rem 3rem -1.5rem $primary-color,
+    inset 0px 3rem 2rem -3rem $primary-color;
+  padding: 140px;
+
+  @include lg {
+    padding: 100px 40px;
+  }
+
+  @include sm {
+    padding: 100px 20px;
+  }
+
+  .Content {
+    max-width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include sm {
+      max-width: 100%;
+    }
+
+    .Title {
+      @include sectionTitle;
+    }
+
+    .Subtitle {
+      display: block;
+      font-size: 24px;
+      font-weight: 900;
+      text-align: left;
+
+      @include xs {
+        font-size: 20px;
+      }
+    }
+
+    .Buttons {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: horizontal;
+      flex-wrap: wrap;
+      gap: 40px;
+
+      @include lg {
+        gap: 20px;
+      }
+
+      @include sm {
+        flex-direction: column;
+      }
+
+      .Button {
+        @include focus;
+
+        @include xs {
+          font-size: 14px;
+        }
+
+        &:last-of-type {
+          color: $reverse-color;
+        }
+      }
+    }
+  }
+
+  .BreadShape {
+    position: absolute;
+    top: 140px;
+    right: 140px;
+    width: 240px;
+    height: 240px;
+    background: transparent;
+    text-align: center;
+    padding: 12px;
+    transform: skew(0deg, -6deg);
+
+    @include lg {
+      top: 100px;
+      right: 40px;
+      width: 160px;
+      height: 160px;
+    }
+
+    @include sm {
+      top: unset;
+      bottom: 100px;
+      right: 40px;
+      width: 160px;
+      height: 160px;
+    }
+
+    @include xs {
+      top: unset;
+      bottom: 100px;
+      right: 20px;
+      width: 120px;
+      height: 120px;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 40%;
+      width: 35%;
+      background: #081c20;
+      border-radius: 4rem 2rem 0 3rem;
+      border-top: 0.05rem solid white;
+      border-left: 0.05rem solid white;
+      border-bottom: 0.05rem solid white;
+      box-shadow: -0.05rem 0 0.02rem #fff, -0.05rem 0 0.02rem #fff,
+        -0.25rem 0.15rem 0.2rem $primary-color,
+        inset 0.2rem 0 0.2rem -0.2rem white,
+        inset 2rem 0 1rem -2.25rem $primary-color;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 14%;
+      height: 40%;
+      width: 55%;
+      background: #081c20;
+      border-radius: 3rem 6rem 3rem 0;
+      border-top: 0.1rem solid white;
+      border-right: 0.1rem solid white;
+      border-bottom: 0.1rem solid white;
+      box-shadow: 0.1rem 0 0.05rem #fff, 0.1rem 0 0.05rem #fff,
+        0.25rem 0.15rem 0.2rem $primary-color,
+        inset -0.2rem 0.2rem 0.2rem -0.2rem white,
+        inset -2rem 0 1.5rem -2.25rem $primary-color;
+      z-index: 1;
+    }
+
+    & > div:first-of-type {
+      position: absolute;
+      top: 35%;
+      left: 7%;
+      height: 55%;
+      width: 75%;
+      background: #081c20;
+      border-radius: 0.5rem 0.5rem 1rem 1rem;
+      border-right: 0.1rem solid white;
+      border-bottom: 0.1rem solid white;
+      box-shadow: 0 0.1rem 0.05rem #fff, 0 0.1rem 0.05rem #fff,
+        0 0.3rem 0.25rem 0 $primary-color,
+        inset -0.2rem -0.2rem 0.2rem -0.2rem white,
+        inset -2rem -1.5rem 1.5rem -2.25rem $primary-color,
+        inset 0.2rem -0.2rem 0.2rem -0.2rem white,
+        inset 2rem -1.5rem 1rem -2.25rem $primary-color;
+      z-index: 2;
+    }
+
+    & > div:last-of-type {
+      position: relative;
+      top: 15%;
+      left: 10%;
+      height: 60%;
+      width: 60%;
+      border-radius: 20% 20% 0 0;
+      box-shadow: 0rem 0rem 10rem 1rem $primary-color;
+      z-index: -1;
+      transform: inherit;
+    }
+  }
+}

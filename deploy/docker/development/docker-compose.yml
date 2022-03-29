@@ -1,0 +1,90 @@
+version: '3.6'
+
+services:
+  ganache:
+    container_name: ganache
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/ganache/Dockerfile
+    ports:
+      - 8545:8545
+
+  truffle:
+    container_name: truffle
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/truffle/Dockerfile
+    healthcheck:
+      test: curl -sf -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' ganache:8545
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    tty: true
+    volumes:
+      - abis-volume:/backend/abis
+    depends_on:
+      - ganache
+    
+  truffle-test:
+    container_name: truffle-test
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/truffle/Dockerfile
+    healthcheck:
+      test: curl -sf -X POST --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' ganache:8545
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    entrypoint: ./truffle-test.sh
+    depends_on:
+      - ganache
+
+  postgres:
+    image: postgres:10.6-alpine
+    container_name: postgres
+    env_file:
+      - ../../../.env.development
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    env_file:
+      - ../../../.env.development
+    depends_on:
+      - postgres
+    ports:
+      - 5500:80
+
+  frontend:
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/images/frontend/Dockerfile
+      target: local
+    image: europe-west1-docker.pkg.dev/breadcrumbs-345213/breadcrumbs/development/frontend:latest
+    container_name: frontend
+    env_file:
+      - ../../../.env.development
+    volumes:
+      - ${PWD}/frontend:/frontend
+      - ${PWD}/prisma:/prisma
+      - abis-volume:/backend/abis
+      - ${PWD}/logs/development/frontend:/logs/
+      # - public-volume:/frontend/public
+    depends_on:
+      - postgres
+      - pgadmin
+      - ganache
+      - truffle
+    ports: 
+      - 80:80
+
+volumes:
+  postgres-volume:
+  abis-volume:
+  prisma-volume:
+  # public-volume:

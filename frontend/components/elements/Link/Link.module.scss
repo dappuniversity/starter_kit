@@ -1,0 +1,16 @@
+@import "styles/variables.scss";
+
+.Link {
+  &:hover {
+    color: $primary-color;
+  }
+
+  &.Accent {
+  }
+
+  &.Disabled,
+  &.Accent.Disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

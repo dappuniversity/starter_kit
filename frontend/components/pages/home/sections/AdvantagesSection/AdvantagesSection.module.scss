@@ -1,0 +1,125 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.AdvantagesSection {
+  overflow-x: hidden;
+  min-height: calc(100vh + 100px);
+  max-width: 100%;
+
+  .Layout {
+    width: 120%;
+    max-height: calc(100% - 100px);
+    margin-left: -10%;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include md {
+      width: 100%;
+      margin-left: 0%;
+    }
+
+    & > div {
+      min-height: 100vh;
+      transform: skew(-10deg);
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      padding: 400px 80px;
+
+      @include md {
+        padding: 200px 80px;
+        transform: skew(0deg);
+      }
+
+      &:first-of-type {
+        padding-left: 180px;
+
+        @include md {
+          padding-left: 80px;
+        }
+      }
+
+      &:last-of-type {
+        padding-right: 180px;
+
+        @include md {
+          padding-right: 80px;
+        }
+      }
+
+      &:first-child {
+        background: linear-gradient(
+          5deg,
+          #2c2e3300 5%,
+          #2c2e33cc 35%,
+          #2c2e33cc 65%,
+          #2c2e3300 95%
+        );
+
+        .Highlight {
+          color: $primary-color;
+        }
+      }
+
+      &:nth-of-type(2) {
+        position: relative;
+        background: linear-gradient(
+          5deg,
+          #081c2000 5%,
+          #081c20cc 35%,
+          #081c20cc 65%,
+          #081c2000 95%
+        );
+
+        .Highlight {
+          color: $accent-color;
+        }
+      }
+
+      &:last-child {
+        background: linear-gradient(
+          5deg,
+          #f08c0000 5%,
+          #f08c0077 35%,
+          #f08c0077 65%,
+          #f08c0000 95%
+        );
+
+        .Highlight {
+          color: $reverse-color;
+        }
+      }
+
+      @include md {
+        flex: 0 0 100%;
+      }
+
+      .Content {
+        transform: skew(10deg);
+
+        @include md {
+          transform: skew(0deg);
+        }
+
+        ul {
+          list-style-type: none;
+
+          li {
+            text-align: center;
+
+            .Icon {
+              margin: 40px auto 20px auto;
+
+              svg {
+                width: 30px;
+                height: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

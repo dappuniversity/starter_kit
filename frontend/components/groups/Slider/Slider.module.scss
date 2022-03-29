@@ -1,0 +1,76 @@
+@import "styles/mixins.scss";
+@import "styles/variables.scss";
+
+.Slider {
+  width: calc(100% + 20px);
+
+  :global(.slick-list) {
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    :global(.slick-track) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      :global(.slick-slide) {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        & > div {
+          flex: 1;
+          display: flex;
+          margin: auto;
+
+          & > div {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+
+  :global(.slick-dots) {
+    list-style-type: none;
+    bottom: -80px;
+
+    li {
+      margin: 0px 24px;
+
+      button {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: transparent;
+        box-shadow: 0.01rem -0.01rem 0.1rem #fff, 0.01rem -0.01rem 0.1rem #fff,
+          0.05rem -0.05rem 1rem $primary-color,
+          0.05rem -0.05rem 0.1rem $primary-color,
+          0.05rem -0.05rem 0.1rem $primary-color;
+        transition: all 0.3s;
+
+        &:hover {
+          transform: scale(1.5);
+        }
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  :global(.slick-dots li.slick-active button) {
+    transform: scale(1.5);
+    box-shadow: 0.05rem -0.05rem 0.1rem #fff, 0.05rem -0.05rem 0.1rem #fff,
+      0.05rem -0.05rem 1rem $primary-color, 0.2rem -0.2rem 1rem $primary-color,
+      0.5rem -0.5rem 2rem $primary-color;
+  }
+
+  li::before {
+    display: none;
+    content: "";
+  }
+}

@@ -1,0 +1,8 @@
+@import "styles/mixins.scss";
+
+.CrumbLinks {
+  .Links {
+    justify-content: right;
+    gap: 10px;
+  }
+}

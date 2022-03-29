@@ -1,0 +1,9 @@
+@import "styles/mixins.scss";
+
+.Account {
+  padding: 20px;
+
+  .Badge {
+    min-width: 80px;
+  }
+}
