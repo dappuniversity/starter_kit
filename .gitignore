@@ -11,7 +11,7 @@ frontend/coverage
 
 # next.js
 frontend/.next/
-frontend/out/
+frontend/build/
 
 # production
 /build
