@@ -1,7 +1,7 @@
 {
-  "name": "eth-marketplace",
+  "name": "digital-ocean-stream-nft",
   "version": "0.1.0",
-  "description": "An Ethereum Marketplace",
+  "description": "A centralized data on a decentralized platform for the creative one. Now Music Artists & Art Artists will have the opportunity to collaborate, developing Music NFTs, With Royalties Splits, built with the contracts.",
   "author": "gregory@dappuniversity.com",
   "dependencies": {
     "babel-polyfill": "6.26.0",
@@ -10,16 +10,16 @@
     "babel-preset-stage-2": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
     "babel-register": "6.26.0",
-    "bootstrap": "4.3.1",
-    "chai": "4.2.0",
+    "bootstrap": "5.1.3",
+    "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
     "chai-bignumber": "3.0.0",
-    "react": "16.8.4",
-    "react-bootstrap": "1.0.0-beta.5",
-    "react-dom": "16.8.4",
-    "react-scripts": "2.1.3",
-    "truffle": "5.0.5",
-    "web3": "1.0.0-beta.55"
+    "react": "18.0.0",
+    "react-bootstrap": "2.2.3",
+    "react-dom": "18.0.0",
+    "react-scripts": "5.0.1",
+    "truffle": "5.5.10",
+    "web3": "1.7.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +35,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
+  ],
+  "keywords": [
+    "digitaloceanstream",
+    "music nft"
   ]
 }
