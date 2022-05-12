@@ -1,0 +1,17 @@
+@media all and (min-width: 480px) {
+    .main {
+        padding: 130px;
+    }
+    .Main {
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+    }
+    .Header {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+}
