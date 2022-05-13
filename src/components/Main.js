@@ -4,11 +4,35 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import "./Main.css";
+import Signature from "./enterSignature";
+import Vote from "./Vote";
 
-export default function Main() {
+export default class Main extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+        enter: false,
+        vote: false,
+    };
+    this.goEnter = this.goEnter.bind(this);
+    this.goVote = this.goVote.bind(this);
+}
 
-  return (
+goEnter() {
+    this.setState({
+        enter: true,
+    });
+}
+
+goVote() {
+  this.setState({
+      vote: true,
+  });
+}
+
+  render() {
+    let layout = (
     <div className="main">
         <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
         <a
@@ -28,13 +52,38 @@ export default function Main() {
     
     <div className="Main">
         <h1 className="Header">Welcome</h1>
-        <Button block size="lg" type="submit">
+        <Button block size="lg" type="submit" onClick={this.goEnter}>
           Enter a malicious activity
         </Button>
-        <Button block size="lg" type="submit">
+        <Button block size="lg" type="submit" onClick={this.goVote}>
           Vote network activities
        </Button>
     </div>
     </div>
+    )
+
+    if (this.state.enter === true) {
+      layout = (
+
+          <div>
+              <Signature/>
+          </div>
+      );
+  }
+
+  if (this.state.vote === true) {
+    layout = (
+
+        <div>
+            <Vote/>
+        </div>
+    );
+}
+  
+  return (
+    <div>
+        {layout}
+    </div>
   );
-};
+}
+}
