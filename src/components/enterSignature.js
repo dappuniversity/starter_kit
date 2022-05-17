@@ -36,7 +36,9 @@ export default class enterSignature extends React.Component {
           </li>
         </ul>
       </nav>
-    
+    <h1>Enter Signature</h1>
+    <p> You can add a signature on the CIDS using this platform. If the signature already exists in the chain, you will be redirected to voting.
+    </p>
     <div className="Signature">
     <form>
         <div class="form-group row">

@@ -49,9 +49,10 @@ goVote() {
           </li>
         </ul>
       </nav>
-    
     <div className="Main">
         <h1 className="Header">Welcome</h1>
+        <p> Welcome to the Collaborative Intrusion Detection System.</p>
+        <p> You can add or browse signatures.</p>
         <Button block size="lg" type="submit" onClick={this.goEnter}>
           Enter a malicious activity
         </Button>

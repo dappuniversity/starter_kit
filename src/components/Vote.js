@@ -50,6 +50,7 @@ export default class Vote extends React.Component  {
               <td>Signature #1</td>
               <td>5 safe 1 malicious</td>
               <td>0x39C7BC5496f4eaaa1fF75d88E079C22f0519E7b9</td>
+              <td><button className="downButton">Download data</button></td>
               <td><button className="voteButton">Vote</button></td>
             </tr>
             <tr>
@@ -57,6 +58,7 @@ export default class Vote extends React.Component  {
               <td>Signature #2</td>
               <td>3 safe 2 malicious</td>
               <td>0x39C7BC5496f4eaaa1fF75d88E079C22f0519E7b9</td>
+              <td><button className="downButton">Download data</button></td>
               <td><button className="voteButton">Vote</button></td>
             </tr>
             <tr>
@@ -64,6 +66,7 @@ export default class Vote extends React.Component  {
               <td>Signature #3</td>
               <td>0 safe 2 malicious</td>
               <td>0x39C7BC5496f4eaaa1fF75d88E079C22f0519E7b9</td>
+              <td><button className="downButton">Download data</button></td>
               <td><button className="voteButton">Vote</button></td>
             </tr>
           </tbody>
