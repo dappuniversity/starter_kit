@@ -26,3 +26,18 @@
     color: hsl(218, 40%, 49%); /* Green */
     text-decoration: underline;
   }
+
+.nav-link{
+    color: whitesmoke;
+}
+
+.nav-link:hover{
+    color:grey;
+}
+.navbar-brand{
+    color: whitesmoke;
+}
+
+.navbar-brand:hover {
+    color: whitesmoke;
+}

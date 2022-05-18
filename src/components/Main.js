@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {BrowserRouter as Router, Routes, Switch, Link, Route} from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar"
@@ -33,26 +34,15 @@ goVote() {
 
   render() {
     let layout = (
+      
     <div className="main">
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-        <a
-          className="navbar-brand col-sm-3 col-md-2 mr-0"
-          href="./"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Collaborative Intrusion Detection Platform
-        </a>
-        <ul className="navbar-nav px-3">
-          <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-            <small className="text-white"><span id="account">{}</span></small>
-          </li>
-        </ul>
-      </nav>
+
     <div className="Main">
-        <h1 className="Header">Welcome</h1>
+        <center>
+        <h1> Welcome </h1>
         <p> Welcome to the Collaborative Intrusion Detection System.</p>
         <p> You can add or browse signatures.</p>
+        </center>
         <Button block size="lg" type="submit" onClick={this.goEnter}>
           Enter a malicious activity
         </Button>
@@ -61,6 +51,7 @@ goVote() {
        </Button>
     </div>
     </div>
+    
     )
 
     if (this.state.enter === true) {
@@ -80,11 +71,14 @@ goVote() {
         </div>
     );
 }
+
   
   return (
+    
     <div>
         {layout}
     </div>
+
   );
 }
 }
