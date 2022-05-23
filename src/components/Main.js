@@ -21,15 +21,13 @@ export default class Main extends React.Component {
 }
 
 goEnter() {
-    this.setState({
-        enter: true,
-    });
+  
+    window.location.href = '/uploadSignature';
 }
 
 goVote() {
-  this.setState({
-      vote: true,
-  });
+ 
+  window.location.href = '/Vote';
 }
 
   render() {

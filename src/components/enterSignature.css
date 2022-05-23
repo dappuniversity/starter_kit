@@ -1,8 +1,8 @@
 .formButton {
-    position: right;
+    position: center;
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
+    width: 100px;
 }
 
 .nav-link{

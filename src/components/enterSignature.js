@@ -89,11 +89,13 @@ export default class enterSignature extends React.Component {
             </div>
             <br></br>
             <br></br>
-            <div className="formButton">
-            <Button block size="lg" type="submit">
-            Submit
-            </Button>
-            </div>
+             <div className="formButton">
+              <Button block size="lg" type="submit" value = "Submit">
+              Submit
+              </Button>
+              </div>
+            <br></br>
+            <br></br>
         </div>
     </form>
       
