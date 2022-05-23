@@ -5,9 +5,11 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import "./Main.css";
-import Signature from "./enterSignature";
+import Signature from "./upload"; //change this line to revert back to old signature page 
 import Vote from "./Vote";
 import Main from "./Main";
+import Upload from "./upload";
+import UploadSuccess from "./uploaded"
 
 export default class App extends React.Component {
 
@@ -27,7 +29,7 @@ export default class App extends React.Component {
             <Link class="nav-link" to="/Main"> Home </Link>
             </li>
             <li class="nav-item">
-            <Link class="nav-link" to="/enterSignature"> Add Signature </Link>
+            <Link class="nav-link" to="/uploadSignature"> Add Signature </Link>
             </li>
             <li class="nav-item">
             <Link class="nav-link" to="/Vote"> Vote </Link>
@@ -41,8 +43,10 @@ export default class App extends React.Component {
     </div>
     <Routes>
             <Route path="/Main" element={<Main/>} />
-            <Route path="/enterSignature" element={<Signature/>} />
+            <Route path="/uploadSignature" element={<Signature/>} />
             <Route path="/Vote" element={<Vote/>}/>
+            <Route path="/uploadSignature" element={<Upload/>}/>
+            <Route path="/Uploaded" element={<UploadSuccess/>} />
     </Routes>
     </Router>
     </div>
