@@ -12,7 +12,7 @@ export default function Login() {
   const [loginStatus, setLoginStatus] = useState("");
 
   const login = () => {
-    Axios.get("http://localhost:8000/api/login/"+username)
+    Axios.get("http://localhost:8000/api/login/"+username+"/")
     .then((response) => {
       if (response) {
         console.log(response.data);
