@@ -3,12 +3,28 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
+import Axios from 'axios';
 import "./Login.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
 
+  const login = () => {
+    Axios.get("http://localhost:8000/api/login/"+username)
+    .then((response) => {
+      if (response) {
+        console.log(response.data);
+         setLoginStatus (response.data.message);
+      } else {
+        console.log("FAIL!");
+         setLoginStatus (response.data[0].message);
+      }
+   }).catch(error => {
+     console.log('error is',error);
+   }); 
+  }
   function validateForm() {
     return username.length > 0 && password.length > 0;
   }
@@ -54,14 +70,13 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
+        <Button block size="lg" type="submit" disabled={!validateForm()} onClick={login}>
           Login
         </Button>
         <Button variant="secondary" block size="lg" type="submit" disabled={!validateForm()}>
           Register for an account
        </Button>
       </Form>
-      
       </div>
     </div>
   );

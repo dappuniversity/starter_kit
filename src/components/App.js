@@ -10,6 +10,7 @@ import Vote from "./Vote";
 import Main from "./Main";
 import Upload from "./upload";
 import UploadSuccess from "./uploaded"
+import Login from "./Login";
 
 export default class App extends React.Component {
 
@@ -55,7 +56,7 @@ export default class App extends React.Component {
 
   return (
     <div>
-        {layout}
+        <Login/>
     </div>
   );
 }
