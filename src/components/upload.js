@@ -56,7 +56,7 @@ export default class Upload extends React.Component {
             this.fileHash = fileAdded.path;
             console.log(this.fileHash);
             
-            const urlItemAdded = "https://ipfs.infura.io/ipfs/" + this.fileHash
+            const urlItemAdded = "https://ipfs.io/ipfs/" + this.fileHash
 
             console.log(urlItemAdded);
 
