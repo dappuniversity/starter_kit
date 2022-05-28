@@ -7,9 +7,12 @@ import Container from "react-bootstrap/Container"
 import "./Main.css";
 import Signature from "./enterSignature";
 import Vote from "./Vote";
+import Upload from "./upload";
+import UploadSuccess from "./uploaded"
+import Welcome from "./Welcome"
 
 export default class Main extends React.Component {
-
+  
   constructor() {
     super();
     this.state = {
@@ -18,59 +21,71 @@ export default class Main extends React.Component {
     };
     this.goEnter = this.goEnter.bind(this);
     this.goVote = this.goVote.bind(this);
+    this.doLogout = this.doLogout.bind(this);
+   
 }
+
 
 goEnter() {
   
     window.location.href = '/uploadSignature';
+    return false;
 }
 
 goVote() {
  
   window.location.href = '/Vote';
+  return false;
 }
+
+
+doLogout() {
+  let user = JSON.parse(localStorage.getItem('login'));
+  user.login = false;
+  localStorage.setItem('login', JSON.stringify(user));
+  
+  window.location.href = '/';
+}
+
 
   render() {
     let layout = (
       
     <div className="main">
+      <Router>
+      <div className="navbarMe">
+    
+            <nav class="navbar navbar-expand-sm bg-dark">
+            <a class="navbar-brand" href="#">Collaborative Intrusion Detection Platform</a>
+              <ul class="navbar-nav">
+              
+                <li class="nav-item">
+                <Link class="nav-link" to="/Welcome"> Home </Link>
+                </li>
+                <li class="nav-item">
+                <Link class="nav-link" to="/uploadSignature"> Add Signature </Link>
+                </li>
+                <li class="nav-item">
+                <Link class="nav-link" to="/Vote"> Vote </Link>
+                </li>
 
-    <div className="Main">
-        <center>
-        <h1> Welcome </h1>
-        <p> Welcome to the Collaborative Intrusion Detection System.</p>
-        <p> You can add or browse signatures.</p>
-        </center>
-        <Button block size="lg" type="submit" onClick={this.goEnter}>
-          Enter a malicious activity
-        </Button>
-        <Button block size="lg" type="submit" onClick={this.goVote}>
-          Vote network activities
-       </Button>
-    </div>
+                <li class="nav-item" onClick={this.doLogout}><Link to="/logout" class="nav-link">  Logout   </Link> </li>
+            
+              </ul>
+            </nav>
+    
+            </div>
+    <Routes>
+                <Route path="/Welcome" element={<Welcome/>} />
+                <Route path="/uploadSignature" element={<Signature/>} />
+                <Route path="/Vote" element={<Vote/>}/>
+                <Route path="/uploadSignature" element={<Upload/>}/>
+                <Route path="/Uploaded" element={<UploadSuccess/>} />
+        </Routes>
+    </Router>
     </div>
     
     )
-
-    if (this.state.enter === true) {
-      layout = (
-
-          <div>
-              <Signature/>
-          </div>
-      );
-  }
-
-  if (this.state.vote === true) {
-    layout = (
-
-        <div>
-            <Vote/>
-        </div>
-    );
-}
-
-  
   return (
     
     <div>

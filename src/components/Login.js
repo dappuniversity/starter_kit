@@ -6,12 +6,15 @@ import Container from "react-bootstrap/Container"
 import Axios from 'axios';
 import { sha256 } from 'js-sha256';
 import "./Login.css";
+import Main from "./Main";
+import App from "./App";
+import Welcome from "./Welcome"
 
 export default class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-        signed: false,
+        verified: false,
         username: "",
         password: "",
     };
@@ -41,6 +44,15 @@ setPassword(pwd){
     password: pwd,
   });
 }
+
+static isLogged() {
+  let loginData = localStorage.getItem('login');
+  loginData = JSON.parse(loginData);
+  if (loginData !== null && loginData.login === true) {
+      return true;
+  }
+  return false;
+}
 validateForm() {
   //return this.username.length > 0 && this.password.length > 0;
   return 1
@@ -58,13 +70,24 @@ doLogin() {
             console.log(response)
             if (password === response.data.password) {
               console.log(response.data)
+              this.setState({signed: true,});
               //this.props.doLogin(response.data,this.state.admin, this.state.type);
+              let loginData = {
+                login: true,
+                info: response.data,
+              };
+        
+            loginData = JSON.stringify(loginData);
+            localStorage.setItem('login', loginData);
+    
+            this.setState({
+              username: JSON.parse(loginData).info.username,
+            });
             } else {
                 alert('Password is incorrect!');
             }
         })
         .catch((err => {
-        
             console.log(err);
             if (err.response.status === 404) {
 
@@ -75,6 +98,7 @@ doLogin() {
 }
 
   render() {
+    let loginData = localStorage.getItem('login');
     let layout = (
       <div className="main">
       <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
@@ -112,6 +136,9 @@ doLogin() {
     </div>
   </div>
     );
+    if (Login.isLogged() == true) {
+      layout = (<div> <Main /> </div>);
+    }
     return (
       <div>
      {layout} 
