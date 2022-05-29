@@ -9,6 +9,7 @@ import "./Login.css";
 import Main from "./Main";
 import App from "./App";
 import Welcome from "./Welcome"
+import Registration from "./Registration"
 
 export default class Login extends React.Component {
   constructor() {
@@ -17,33 +18,23 @@ export default class Login extends React.Component {
         verified: false,
         username: "",
         password: "",
+        goReg: false,
     };
     this.doLogin = this.doLogin.bind(this);
+    this.goRegister = this.goRegister.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.checkSigned = this.checkSigned.bind(this);
-    this.setUsername = this.setUsername.bind(this);
-    this.setPassword = this.setPassword.bind(this);
+
 }
 
 
-checkSigned() {
-    this.setState({
-        signed:true,
-    });
-}
-
-setUsername(un){
+goRegister(){
+  console.log("func");
   this.setState({
-    username: un,
+    goReg: true,
   });
 }
 
-setPassword(pwd){
-  this.setState({
-    password: pwd,
-  });
-}
 
 static isLogged() {
   let loginData = localStorage.getItem('login');
@@ -129,16 +120,21 @@ doLogin() {
       </Form.Group>
       
       <Button variant="primary" block size="lg" type="button" onClick={this.doLogin}>Submit</Button>
-      <Button variant="secondary" block size="lg" type="button" disabled={!this.validateForm()}>
+      <Button variant="secondary" block size="lg" type="button" onClick={this.goRegister}>
         Register for an account
      </Button>
     </Form>
     </div>
   </div>
     );
+
+    if (this.state.goReg == true) {
+      layout = (<div> <Registration /> </div>);
+    }
     if (Login.isLogged() == true) {
       layout = (<div> <Main /> </div>);
     }
+    
     return (
       <div>
      {layout} 
