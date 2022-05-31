@@ -1,0 +1,43 @@
+to start the app:
+
+pre-requisites
+    1. Make sure Ganache is running and the ports match code configs
+
+1. open new terminal
+    - make sure node version is 10.5.0
+    - if not, you need to use nvm to switch versions
+    - might need to activate nvm globally with "source ~/.nvm/nvm.sh"
+    - then start local web server with "npm run start"
+    - browser window should open
+
+2. open another terminal
+    - compile code with "truffle compile"
+    - migrate contract code with "truffle migrate"
+
+3. open truffle console with "truffle console"
+    - opens development console for truffle
+    - commands:
+        - get contract 
+            - "contract = await EthSwap.deployed()"
+            - returns undefined but can be fetched by calling "contract"
+        - get contract address
+            - "add = contract.address"
+        - get contract name
+            - "name = await contract.name()"
+            - returns undefined but can be fetched by calling "name"
+
+4. To exit console
+    - > ".exit"
+
+5. To add a new contract to the blockchain
+    - truffle migrate --reset
+
+6. Create Token.sol or similar when creating a new token
+    - truffle console 
+        - get the deployed token with "token = await Token.deployed()"
+        - get the token's balance (should return the default that was set in the Token.sol file)
+            - ethSwap = await EthSwap.deployed()
+            - token = await Token.deployed()
+            - balance = await token.balance('address')
+            - balance.toString()
+
