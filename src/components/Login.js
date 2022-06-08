@@ -49,6 +49,7 @@ async componentWillMount() {
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
+    console.log(accounts)
 
     if (accounts.length !== 0) {
       const account = accounts[0];

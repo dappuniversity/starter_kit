@@ -5,6 +5,9 @@ import Button from "react-bootstrap/Button";
 import { BrowserRouter as Router, Routes, Switch, Link, Route } from "react-router-dom";
 import "./enterSignature.css";
 import { create } from 'ipfs-http-client'
+import Signatures from '../abis/Signatures.json'
+import  { ethers } from "ethers"
+
 
 
 
@@ -15,13 +18,20 @@ export default class Upload extends React.Component {
         this.state = {
             existsonBC: false,
             ipfs: null,
-            fileHash: null
+            fileHash: null,
+            currentMetaAccount: "", 
+            contract: null,
         };
 
-        this.ipfs = create({ host: 'localhost', port: '5001', protocol: 'http' });
-        console.log(this.ipfs)
+        this.state.ipfs =  create({ host: 'localhost', port: '5001', protocol: 'http' });
+        this.state.currentMetaAccount = localStorage.getItem("metaAccount");
+        console.log(this.state.ipfs)
         this.onChain = this.onChain.bind(this);
         this.addFile = this.addFile.bind(this);
+        this.loadBlockchainData = this.loadBlockchainData.bind(this);
+
+       
+      
 
     }
     onChain() {
@@ -30,8 +40,30 @@ export default class Upload extends React.Component {
         });
     }
 
-    addFile = async () => {
 
+    async componentWillMount() {
+        await this.loadBlockchainData()
+      }
+
+    loadBlockchainData = async () => {
+   
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const networkData = Signatures.networks[5777];
+        const signatureContract = new ethers.Contract(networkData.address, Signatures.abi, signer);
+
+        await this.setState({contract: signatureContract});
+
+    }
+    }
+    
+
+    addFile = async () =>  {
+
+        
         const file = document.getElementsByName('file')[0].files[0];
     
         if(file != undefined)
@@ -51,7 +83,7 @@ export default class Upload extends React.Component {
     
             console.log(data);
     
-            const fileAdded = await this.ipfs.add(file);
+            const fileAdded = await this.state.ipfs.add(file);
             console.log(fileAdded);
             this.setState({fileHash: fileAdded.path});
             console.log(this.state.fileHash);
@@ -64,7 +96,17 @@ export default class Upload extends React.Component {
 
             localStorage.setItem("addedItemHash", urlItemAdded);
 
+            const waveTxn = await this.state.contract.addNewSignature(this.state.fileHash);
+            console.log("Mining...", waveTxn.hash);
+
+            await waveTxn.wait();
+            console.log("Mined -- ", waveTxn.hash);
+
             window.location.href = '/Uploaded';
+
+            
+
+
             
         }
         
