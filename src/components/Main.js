@@ -77,7 +77,7 @@ doLogout() {
             </div>
     <Routes>
                 <Route path="/Welcome" element={<Welcome/>} />
-                <Route path="/uploadSignature" element={<Signature/>} />
+                
                 <Route path="/Vote" element={<Vote/>}/>
                 <Route path="/uploadSignature" element={<Upload/>}/>
                 <Route path="/Uploaded" element={<UploadSuccess/>} />

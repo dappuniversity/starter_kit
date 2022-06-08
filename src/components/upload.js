@@ -36,7 +36,7 @@ export default class Upload extends React.Component {
     
         if(file != undefined)
         {
-            console.log("HIII")
+          
             const get_file_array = (file) => {
                 return new Promise((acc, err) => {
                     const reader = new FileReader();
@@ -53,10 +53,12 @@ export default class Upload extends React.Component {
     
             const fileAdded = await this.ipfs.add(file);
             console.log(fileAdded);
-            this.fileHash = fileAdded.path;
-            console.log(this.fileHash);
+            this.setState({fileHash: fileAdded.path});
+            console.log(this.state.fileHash);
+
+            console.log()
             
-            const urlItemAdded = "https://ipfs.io/ipfs/" + this.fileHash
+            const urlItemAdded = "https://ipfs.io/ipfs/" + this.state.fileHash
 
             console.log(urlItemAdded);
 

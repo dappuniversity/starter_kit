@@ -14,18 +14,79 @@ import Registration from "./Registration"
 export default class Login extends React.Component {
   constructor() {
     super();
+   
     this.state = {
         verified: false,
         username: "",
         password: "",
         goReg: false,
+        currentMetaAccount: "",
+        
     };
     this.doLogin = this.doLogin.bind(this);
     this.goRegister = this.goRegister.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.checkIfWalletIsConnected = this.checkIfWalletIsConnected.bind(this);
+    this.connectWallet = this.connectWallet.bind(this);
+
 
 }
+
+async componentWillMount() {
+  await this.checkIfWalletIsConnected()
+}
+
+ checkIfWalletIsConnected = async () => {
+  try {
+    const { ethereum } = window;
+
+    if (!ethereum) {
+      console.log("Make sure you have metamask!");
+      return;
+    } else {
+      console.log("We have the ethereum object", ethereum);
+    }
+
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      console.log("Found an authorized account:", account);
+      this.setState({currentMetaAccount: account});
+    } else {
+      console.log("No authorized account found")
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  
+}
+
+
+ connectWallet = async () => {
+  try {
+    const { ethereum } = window;
+
+    if (!ethereum) {
+      alert("Get MetaMask!");
+      return;
+    }
+
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+
+    console.log("Connected to ", accounts[0]);
+    alert("Connected to " + accounts[0])
+    this.setState({currentMetaAccount: accounts[0]});
+    localStorage.setItem("metaAccount", accounts[0]);
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
 
 
 goRegister(){
@@ -89,6 +150,7 @@ doLogin() {
 }
 
   render() {
+    
     let loginData = localStorage.getItem('login');
     let layout = (
       <div className="main">
@@ -118,8 +180,13 @@ doLogin() {
         <Form.Label>Password</Form.Label>
         <input class="form-control form-control-lg" type="password" placeholder="Enter password" aria-label=".form-control-lg example" id="password" name="password"/>
       </Form.Group>
-      
-      <Button variant="primary" block size="lg" type="button" onClick={this.doLogin}>Submit</Button>
+
+      {!this.state.currentMetaAccount  && (
+          <Button variant="primary" block size="lg" type="button" onClick={this.connectWallet}>
+            Connect Wallet
+          </Button>
+        )}
+      <Button variant="primary" block size="lg" type="button" onClick={this.doLogin} disabled={!this.state.currentMetaAccount}>Submit</Button>
       <Button variant="secondary" block size="lg" type="button" onClick={this.goRegister}>
         Register for an account
      </Button>
@@ -128,6 +195,7 @@ doLogin() {
   </div>
     );
 
+    
     if (this.state.goReg == true) {
       layout = (<div> <Registration /> </div>);
     }

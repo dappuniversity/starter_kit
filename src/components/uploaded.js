@@ -17,9 +17,9 @@ export default class UploadSuccess extends React.Component {
        
       
         this.onChain = this.onChain.bind(this);
-        this.link = localStorage.getItem("addedItemHash");
+        this.setState({link: localStorage.getItem("addedItemHash")});
         localStorage.removeItem("addedItemHash");
-        console.log(this.link)
+        console.log(this.state.link)
         
 
     }
