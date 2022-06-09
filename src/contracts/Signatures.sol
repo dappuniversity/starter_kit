@@ -1,9 +1,10 @@
 pragma solidity ^0.5.0;
+pragma experimental ABIEncoderV2;
 
 contract Signatures {
     string public name;
     uint public signatureCount = 0;
-    mapping(uint => Signature) public signatures;
+    Signature[] signatures;
 
     struct Signature {
         uint id;
@@ -31,9 +32,15 @@ contract Signatures {
         // Increment signature count
         signatureCount ++;
         // Create the product
-        signatures[signatureCount] = Signature(signatureCount, msg.sender, 1, 0, _hash);
+        signatures.push(Signature(signatureCount, msg.sender, 1, 0, _hash));
         // Trigger an event
         emit SignatureAdded(signatureCount, msg.sender, 1, 0, _hash);
     }
+
+    function getFiles() public view returns (Signature[] memory) {
+        return signatures;
+    }
+
+    
 
 }

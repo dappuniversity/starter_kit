@@ -64,6 +64,7 @@ export default class Upload extends React.Component {
     addFile = async () =>  {
 
         
+
         const file = document.getElementsByName('file')[0].files[0];
     
         if(file != undefined)
@@ -81,18 +82,15 @@ export default class Upload extends React.Component {
             
             const data =  await get_file_array(file);
     
-            console.log(data);
-    
             const fileAdded = await this.state.ipfs.add(file);
-            console.log(fileAdded);
+            
             this.setState({fileHash: fileAdded.path});
-            console.log(this.state.fileHash);
-
-            console.log()
             
             const urlItemAdded = "https://ipfs.io/ipfs/" + this.state.fileHash
 
-            console.log(urlItemAdded);
+            const files = await this.state.contract.getFiles();
+
+            //console.log(files[0].id.toNumber());
 
             localStorage.setItem("addedItemHash", urlItemAdded);
 
@@ -102,11 +100,11 @@ export default class Upload extends React.Component {
             await waveTxn.wait();
             console.log("Mined -- ", waveTxn.hash);
 
-            window.location.href = '/Uploaded';
+    
 
-            
+            //window.location.href = '/Uploaded';
 
-
+        
             
         }
         
