@@ -29,7 +29,7 @@ export default class Upload extends React.Component {
         this.onChain = this.onChain.bind(this);
         this.addFile = this.addFile.bind(this);
         this.loadBlockchainData = this.loadBlockchainData.bind(this);
-
+        this.checkExists = this.checkExists.bind(this);
        
       
 
@@ -59,11 +59,27 @@ export default class Upload extends React.Component {
 
     }
     }
+
+
+    checkExists(hash, filesArray){
+
+        let result = false;
+
+        for (let i = 0; i < filesArray.length; i++) {
+
+            if(filesArray[i].ipfsHash == hash)
+            {
+                result = true;
+                break;
+            }
+
+        }
+
+        return result;
+    }
     
 
     addFile = async () =>  {
-
-        
 
         const file = document.getElementsByName('file')[0].files[0];
     
@@ -89,8 +105,14 @@ export default class Upload extends React.Component {
             const urlItemAdded = "https://ipfs.io/ipfs/" + this.state.fileHash
 
             const files = await this.state.contract.getFiles();
+            
+            if(this.checkExists(this.state.fileHash, files)){
 
-            //console.log(files[0].id.toNumber());
+                alert("File Already Exists!!!");
+                window.location.href = '/Vote';
+
+            }
+            else{
 
             localStorage.setItem("addedItemHash", urlItemAdded);
 
@@ -100,11 +122,10 @@ export default class Upload extends React.Component {
             await waveTxn.wait();
             console.log("Mined -- ", waveTxn.hash);
 
-    
+            const timer = setTimeout( window.location.href = '/Uploaded', 2000);
 
-            //window.location.href = '/Uploaded';
+            }
 
-        
             
         }
         

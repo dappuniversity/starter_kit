@@ -10,6 +10,8 @@ import Main from "./Main";
 import App from "./App";
 import Welcome from "./Welcome"
 import Registration from "./Registration"
+import Signatures from '../abis/Signatures.json'
+import  { ethers } from "ethers"
 
 export default class Login extends React.Component {
   constructor() {
@@ -81,6 +83,14 @@ async componentWillMount() {
     alert("Connected to " + accounts[0])
     this.setState({currentMetaAccount: accounts[0]});
     localStorage.setItem("metaAccount", accounts[0]);
+
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const networkData = Signatures.networks[5777];
+    const signatureContract = new ethers.Contract(networkData.address, Signatures.abi, signer);
+    
+
+    localStorage.setItem("contract", signatureContract);
     
   } catch (error) {
     console.log(error)
