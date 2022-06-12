@@ -1,10 +1,14 @@
 pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
+
+
 contract Signatures {
     string public name;
     uint public signatureCount = 0;
     Signature[] signatures;
+    Voter[] voters;
+    
 
     struct Signature {
         uint id;
@@ -12,6 +16,12 @@ contract Signatures {
         uint attackVote;
         uint normalVote;
         string ipfsHash;
+    }
+
+     struct Voter {
+        address owner;
+        uint id;
+       
     }
 
     event SignatureAdded(
@@ -38,6 +48,9 @@ contract Signatures {
         require(bytes(_hash).length > 0);
         // Create the signature
         signatures.push(Signature(signatureCount, msg.sender, 1, 0, _hash));
+
+        voters.push(Voter(msg.sender,signatureCount));
+
         // Increment signature count
         signatureCount ++;
         // Trigger an event
@@ -57,6 +70,20 @@ contract Signatures {
         //require(_signature.id > 0 && _signature.id <= signatureCount);
         // Require that the owner is not the voter
         // require(_owner != msg.sender);
+
+        // Make sure user has not voted before
+        bool hasVoted = false;
+        
+        
+        
+        for (uint i = 0; i < voters.length; i++) {
+            if (voters[i].owner == msg.sender && voters[i].id == _id) {
+                hasVoted = true;
+            }
+        }
+        
+        require(hasVoted == false, "You have voted for this signature before!");
+
         // Add vote
         uint attacks = _signature.attackVote;
         uint normals = _signature.normalVote;
@@ -68,8 +95,13 @@ contract Signatures {
         }
         _signature.attackVote = attacks;
         _signature.normalVote = normals;
+
+        
+      
         // Update the product
         signatures[_id] = _signature;
+
+        voters.push(Voter(msg.sender, _id));
         // Trigger an event
         emit SignatureVoted(_id, _signature.owner, _signature.attackVote, _signature.normalVote, _signature.ipfsHash);
     }

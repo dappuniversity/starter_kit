@@ -62,10 +62,10 @@ goVote = async (id, vote) => {
     const { ethereum } = window;
 
     if (ethereum) {
-      console.log("This is goVote");
       console.log(this.state.contract);
       const voted = await this.state.contract.voteSignature(id, vote);
       console.log("Voting...");
+      window.location.reload(false);
     }
     else {
       console.log("Ethereum object doesn't exist!");
@@ -73,6 +73,9 @@ goVote = async (id, vote) => {
   }
   catch (error) {
     console.log(error);
+    let errorArr = error.data.message.split("revert");
+    let errorMssg = errorArr[1];
+    alert(errorMssg);
   }
 }
 
