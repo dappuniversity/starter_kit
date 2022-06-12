@@ -106,7 +106,7 @@ goVote = async (id, vote) => {
               <td>{file.normalVote} normal, {file.attackVote} malicious</td>
               <td>{file.owner}</td>
               <td><button className="downButton"><p><a href={"https://ipfs.io/ipfs/" + file.ipfsHash + "/"}>Download data</a></p></button></td>
-              <td><button className="voteButton" type="submit" onClick={() => this.goVote(file.id, 0)}>Attack</button></td>
+              <td><button className="voteButton" type="submit" onClick={() => this.goVote(file.id, 1)}>Attack</button></td>
               <td><button className="voteButton" type="submit" onClick={() => this.goVote(file.id, 0)}>Normal</button></td>
               </tr>
               )
