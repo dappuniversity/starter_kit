@@ -10,12 +10,15 @@ export default class Vote extends React.Component  {
   constructor() {
     super();
     this.state = {
-      contract: "",
+      contract: null,
+      currentMetaAccount: "", 
       signatures: [],
     };
-
+    this.state.currentMetaAccount = localStorage.getItem("metaAccount");
     this.loadBlockchainData = this.loadBlockchainData.bind(this);
     this.getSignatures = this.getSignatures.bind(this);
+    this.goVote = this.goVote.bind(this);
+    
   
 }
 
@@ -51,9 +54,27 @@ getSignatures = async () => {
     });
   })
   this.setState({signatures: recArr});
-  console.log(this.state.signatures)
+  console.log(this.state.signatures);
 }
 
+goVote = async (id, vote) => {
+  try {
+    const { ethereum } = window;
+
+    if (ethereum) {
+      console.log("This is goVote");
+      console.log(this.state.contract);
+      const voted = await this.state.contract.voteSignature(id, vote);
+      console.log("Voting...");
+    }
+    else {
+      console.log("Ethereum object doesn't exist!");
+    }
+  }
+  catch (error) {
+    console.log(error);
+  }
+}
 
 
 
@@ -72,6 +93,8 @@ getSignatures = async () => {
             <th scope="col">Votes</th>
             <th scope="col">Owner</th>
             <th scope="col"></th>
+            <th scope="col">Vote</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -79,11 +102,12 @@ getSignatures = async () => {
               return(
                 <tr key={key}>
                   <th scope="row">{file.id}</th>
-              <td>Signature #{file.id}</td>
+              <td>Signature #{file.id+1}</td>
               <td>{file.normalVote} normal, {file.attackVote} malicious</td>
               <td>{file.owner}</td>
               <td><button className="downButton"><p><a href={"https://ipfs.io/ipfs/" + file.ipfsHash + "/"}>Download data</a></p></button></td>
-              <td><button className="voteButton">Vote</button></td>
+              <td><button className="voteButton" type="submit" onClick={() => this.goVote(file.id, 0)}>Attack</button></td>
+              <td><button className="voteButton" type="submit" onClick={() => this.goVote(file.id, 0)}>Normal</button></td>
               </tr>
               )
             })}
