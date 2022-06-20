@@ -38,7 +38,15 @@ truffle | web3
 
 ### How to run the system
 
+Run the following commands to allow the web3 app to use IPFS
 
+```
+$ ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "["""http://localhost:3000""", """http://127.0.0.1:5001""", """https://webui.ipfs.io""", """http://127.0.0.1:3000"""]"
+```
+
+```
+$ ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods "["""PUT""", """POST"""]"   
+```
 
 Run the following command to run IPFS
 
