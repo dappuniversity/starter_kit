@@ -50,7 +50,7 @@ Go to the "src\backend" directory and run the following command to run the backe
 ```
 $ python manage.py runserver
 ```
-Open the Ganache app and create a new workspace
+Open the Ganache app and create a new workspace. Link truffle-config.js file in the project's main directory to the Ganache workspace.
 Go to the project's main directory and run the following commands to deploy the smart contract on the blockchain for the first time
 ```
 $ truffle compile
