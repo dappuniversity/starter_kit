@@ -6,17 +6,66 @@ Our blockchain based CIDS system is a web application where single IDSs can add 
 
 ### System Requirements
 
-#### django
-To install django
+
+| React Dependencies (npm install)  |  |
+| :---: | :---: |
+axios | babel-preset-es2015
+babel-polyfill  | babel-preset-env
+babel-preset-stage-2 | babel-preset-stage-3 
+babel-register | bootstrap 
+fs | react
+chai | chai-as-promised 
+chai-bignumber | express-fileupload
+ipfs-http-client | js-sha256
+react-bootstrap | ejs 
+react-dom | react-router-dom 
+react-scripts | react-uploader
+truffle | web3 
+
+| Backend Dependencies (pip install)  |  
+| :---: | 
+| django |
+| djangorestframework |
+| mysqlclient |
+
+
+### Note
+* Ganache should be installed on your system. You can download it from the following URL: https://trufflesuite.com/ganache/
+* IPFS should be installed on your system as a command line tool. Follow the following tutorial: https://docs.ipfs.io/install/command-line/#official-distributions
+
+
+
+
+### How to run the system
+
+
+
+Run the following command to run IPFS
+
 ```
-$ npm install django
+$ ipfs daemon
 ```
 
-### Getting Started
-
-First, go to project directory and run the command
-
+Go to the "src\backend" directory and run the following command to run the backend
 ```
-$ npm run start
+$ python manage.py runserver
+```
+Open the Ganache app and create a new workspace
+Go to the project's main directory and run the following commands to deploy the smart contract on the blockchain for the first time
+```
+$ truffle compile
+```
+```
+$ truffle migrate
+```
+Go to the project's main directory and run the following command to run the web3 app
+```
+$ npm start
 ```
 
+
+### Servers
+* Ganache: http://127.0.0.1:7545
+* Django backend: http://127.0.0.1:8000/api
+* IPFS: http://127.0.0.1:5001/webui
+* Web3 App: http://127.0.0.1:3000
