@@ -90,7 +90,7 @@ doRegister() {
       
       <Button variant="primary" block size="lg" type="button" onClick={this.doRegister}>Register</Button>
       <Button variant="secondary" block size="lg" type="button" onClick={this.goLogin}>
-        Go to sign up page
+        Go To Sign In Page
      </Button>
     </Form>
     </div>

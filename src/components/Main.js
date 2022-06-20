@@ -10,6 +10,7 @@ import Vote from "./Vote";
 import Upload from "./upload";
 import UploadSuccess from "./uploaded"
 import Welcome from "./Welcome"
+import  { ethers } from "ethers"
 
 export default class Main extends React.Component {
   
@@ -56,11 +57,11 @@ doLogout() {
       <div className="navbarMe">
     
             <nav class="navbar navbar-expand-sm bg-dark">
-            <a class="navbar-brand" href="#">Collaborative Intrusion Detection Platform</a>
+            <a class="navbar-brand" href="/">Collaborative Intrusion Detection Platform</a>
               <ul class="navbar-nav">
               
                 <li class="nav-item">
-                <Link class="nav-link" to="/Welcome"> Home </Link>
+                <Link class="nav-link" to="/"> Home </Link>
                 </li>
                 <li class="nav-item">
                 <Link class="nav-link" to="/uploadSignature"> Add Signature </Link>
@@ -76,7 +77,7 @@ doLogout() {
     
             </div>
     <Routes>
-                <Route path="/Welcome" element={<Welcome/>} />
+                <Route path="/" element={<Welcome/>} />
                 
                 <Route path="/Vote" element={<Vote/>}/>
                 <Route path="/uploadSignature" element={<Upload/>}/>

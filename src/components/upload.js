@@ -148,7 +148,7 @@ export default class Upload extends React.Component {
                         <br></br>
                         <label> Upload File </label>
                         <br></br>
-                            <input type="file" name="file"></input>
+                            <input type="file" name="file" ></input>
                             <div className="formButton">
                                 <Button block size="lg" type="submit" value="Submit" onClick={this.addFile}>
                                     Submit
