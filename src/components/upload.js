@@ -19,12 +19,11 @@ export default class Upload extends React.Component {
             existsonBC: false,
             ipfs: null,
             fileHash: null,
-            currentMetaAccount: "", 
+            currentMetaAccount: null, 
             contract: null,
         };
 
         this.state.ipfs =  create({ host: 'localhost', port: '5001', protocol: 'http' });
-        this.state.currentMetaAccount = localStorage.getItem("metaAccount");
         console.log(this.state.ipfs)
         this.onChain = this.onChain.bind(this);
         this.addFile = this.addFile.bind(this);
@@ -46,16 +45,20 @@ export default class Upload extends React.Component {
       }
 
     loadBlockchainData = async () => {
+
    
       const { ethereum } = window;
 
       if (ethereum) {
+        const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+        this.state.currentMetaAccount = accounts[0]
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
         const networkData = Signatures.networks[5777];
         const signatureContract = new ethers.Contract(networkData.address, Signatures.abi, signer);
 
         await this.setState({contract: signatureContract});
+       
 
     }
     }
@@ -63,13 +66,13 @@ export default class Upload extends React.Component {
 
     checkExists(hash, filesArray){
 
-        let result = false;
+        let result = -1;
 
         for (let i = 0; i < filesArray.length; i++) {
 
             if(filesArray[i].ipfsHash == hash)
             {
-                result = true;
+                result = i;
                 break;
             }
 
@@ -104,27 +107,40 @@ export default class Upload extends React.Component {
             
             const urlItemAdded = "https://ipfs.io/ipfs/" + this.state.fileHash
 
-            const files = await this.state.contract.getFiles();
-            
-            if(this.checkExists(this.state.fileHash, files)){
+           
 
-                alert("File Already Exists!!!");
-                window.location.href = '/Vote';
+            if(this.state.currentMetaAccount != null)
+            {
+                const files = await this.state.contract.getFiles();
 
+                let check = this.checkExists(this.state.fileHash, files);
+                
+                if(check != -1){
+    
+                    alert("File Already Exists!! Signature #" + (check + 1));
+                    window.location.href = '/Vote';
+    
+                }
+                else{
+    
+                localStorage.setItem("addedItemHash", urlItemAdded);
+    
+                const waveTxn = await this.state.contract.addNewSignature(this.state.fileHash);
+                console.log("Mining...", waveTxn.hash);
+    
+                await waveTxn.wait();
+                console.log("Mined -- ", waveTxn.hash);
+    
+                const timer = setTimeout( window.location.href = '/Uploaded', 2000);
+    
+                }
             }
-            else{
-
-            localStorage.setItem("addedItemHash", urlItemAdded);
-
-            const waveTxn = await this.state.contract.addNewSignature(this.state.fileHash);
-            console.log("Mining...", waveTxn.hash);
-
-            await waveTxn.wait();
-            console.log("Mined -- ", waveTxn.hash);
-
-            const timer = setTimeout( window.location.href = '/Uploaded', 2000);
-
+            else
+            {
+                alert("Please connect to MetaMask!!");
             }
+
+           
 
             
         }

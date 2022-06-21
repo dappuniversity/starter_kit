@@ -14,7 +14,7 @@ export default class Vote extends React.Component  {
       currentMetaAccount: "", 
       signatures: [],
     };
-    this.state.currentMetaAccount = localStorage.getItem("metaAccount");
+    
     this.loadBlockchainData = this.loadBlockchainData.bind(this);
     this.getSignatures = this.getSignatures.bind(this);
     this.goVote = this.goVote.bind(this);
@@ -32,6 +32,11 @@ loadBlockchainData = async () => {
   const { ethereum } = window;
 
   if (ethereum) {
+
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      
+    this.state.currentMetaAccount = accounts[0]
+    
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const networkData = Signatures.networks[5777];
