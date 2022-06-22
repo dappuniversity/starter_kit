@@ -1,0 +1,43 @@
+
+.redtop{
+    width: 100%;
+    height: 550px;
+    background-color:  #FF1800;
+}
+.carousel {
+    margin-top: 0px;
+    width: 800px;
+    height: auto;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto
+    
+ 
+}
+
+.d-block{
+    width: 100%;
+    height: auto;
+   
+    
+}
+
+.grey-bottom {
+    width: 100%;
+    height: 400px;
+    text-align: center;
+    font-size: 22px;
+    background-color: rgb(221, 221, 221);
+}
+
+.textrent{
+    column-count: 3;
+    z-index: -1;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-bottom: 10px;
+    column-gap: 40px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+}
+

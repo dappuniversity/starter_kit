@@ -1,4 +1,9 @@
-/* Styles go here */
+.formButton {
+    position: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}
 
 .nav-link{
     color: whitesmoke;
@@ -13,4 +18,8 @@
 
 .navbar-brand:hover {
     color: whitesmoke;
+}
+
+.Main {
+    padding-top: 200px;
 }

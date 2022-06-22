@@ -1,0 +1,43 @@
+    .navbarMe {
+        z-index: 1;
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .home{
+        display: inline-block;
+        margin: 0;
+        color: white;
+        background-color: transparent;    
+        font-size: 20px;
+        display: inline;
+        width: 100px;
+        margin-right: 20px;
+    }
+    .Main {
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+        padding-top: 200px;
+    }
+
+    .Page {
+        padding-top: 85px;
+    }
+
+    .nav-link{
+        color: whitesmoke;
+    }
+    
+    .nav-link:hover{
+        color:grey;
+    }
+    .navbar-brand{
+        color: whitesmoke;
+    }
+    
+    .navbar-brand:hover {
+        color: whitesmoke;
+    }

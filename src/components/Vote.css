@@ -1,0 +1,43 @@
+.main{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.voteButton{
+    background-color: hsl(218, 40%, 49%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 6px 16px;
+}
+
+.voteButton:hover{
+    background-color: hsl(219, 46%, 69%);
+    transition-duration: 0.4s;
+}
+.downButton{
+    background-color: transparent;
+    border: none;
+    color: grey;
+    transition-duration: 0.4s;
+}
+
+.downButton:hover {
+    color: hsl(218, 40%, 49%); /* Green */
+    text-decoration: underline;
+  }
+
+.nav-link{
+    color: whitesmoke;
+}
+
+.nav-link:hover{
+    color:grey;
+}
+.navbar-brand{
+    color: whitesmoke;
+}
+
+.navbar-brand:hover {
+    color: whitesmoke;
+}
