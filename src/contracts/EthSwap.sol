@@ -13,6 +13,12 @@ contract EthSwap{
         uint amount,
         uint rate
     );
+    event TokensSold(
+        address account,
+        address token,
+        uint amount,
+        uint rate
+    );
 
     constructor (Token _token) public {
         token = _token;
@@ -27,7 +33,16 @@ contract EthSwap{
 
         emit TokenPurchased(msg.sender,address(token), tokenAmount, rate);
     }
-    function sellTokens(){
-        
+    function sellTokens(uint _amount) public {
+        require(token.balanceOf(msg.sender) >= _amount);
+
+        uint etherAmount=_amount/rate;
+
+        require(address(this).balance >=etherAmount);
+
+        token.transferFrom(msg.sender, address(this), _amount);
+        msg.sender.transfer(etherAmount);
+
+       emit TokensSold(msg.sender,address(token), _amount, rate);
     }
 }

@@ -7,7 +7,7 @@ module.exports = async function(deployer) {
     const token=await Token.deployed();
 
     await deployer.deploy(EthSwap,token.address);
-    const ethSwap=await Token.deployed();
+    const ethSwap=await EthSwap.deployed();
 
     await token.transfer(ethSwap.address,'1000000000000000000000000')
 };
