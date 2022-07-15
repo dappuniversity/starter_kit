@@ -27,18 +27,7 @@ class App extends Component {
                 >
                   <img src={logo} className="App-logo" alt="logo" />
                 </a>
-                <h1>Dapp University Starter Kit</h1>
-                <p>
-                  Edit <code>src/components/App.js</code> and save to reload.
-                </p>
-                <a
-                  className="App-link"
-                  href="http://www.dappuniversity.com/bootcamp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LEARN BLOCKCHAIN <u><b>NOW! </b></u>
-                </a>
+                <h1>Hello</h1>
               </div>
             </main>
           </div>
